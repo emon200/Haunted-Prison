@@ -1,5 +1,6 @@
 package DavidCarson;
 
+import caveExplorer.CaveRoom;
 
 public class DavidCave extends CaveRoom {
 
