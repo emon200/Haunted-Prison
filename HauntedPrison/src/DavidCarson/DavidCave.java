@@ -8,6 +8,11 @@ public class DavidCave extends CaveRoom {
 		super(description);
 	}
 	
+	public String validKeys() {
+		return "wdsae";
+				
+	}
+	
 	
 
 }
