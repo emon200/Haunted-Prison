@@ -184,7 +184,9 @@ public class CaveRoom {
 		CaveExplorer.npcs = new NPC[1];
 		CaveExplorer.npcs[0] = new NPC();
 		CaveExplorer.npcs[0].setposition(1, 1);
-
+		//ADD EACH PERSON's ROOM LIKE THIS:
+		CaveRoom customRoom = new NPCRoom("Room");
+		CaveExplorer.caves[2][3] = customRoom;
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
