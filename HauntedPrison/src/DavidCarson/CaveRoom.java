@@ -1,4 +1,4 @@
-package caveExplorer;
+package DavidCarson;
 
 public class CaveRoom {
 	
@@ -6,6 +6,7 @@ public class CaveRoom {
 	private String directions;//tells what you can do
 	private String contents;//a symbol representing what's in the room
 	private String defaultContents;
+	private int hp;
 	//the rooms are organized by direction, 'null' signifies no room/door in that direction
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
@@ -220,7 +221,14 @@ public class CaveRoom {
 		}
 	}
 	
+	public int getHp() {
+		return hp;
+	}
 
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+	
 	
 
 }
