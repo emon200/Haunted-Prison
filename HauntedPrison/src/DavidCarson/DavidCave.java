@@ -13,6 +13,8 @@ public class DavidCave extends CaveRoom {
 				
 	}
 	
-	
+	public void startTalking() {
+		
+	}
 
 }
