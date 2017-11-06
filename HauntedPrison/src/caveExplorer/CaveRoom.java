@@ -1,5 +1,8 @@
 package caveExplorer;
 
+import DavidCarson.CarsonCave;
+import DavidCarson.DavidCave;
+
 public class CaveRoom {
 	
 	private String description;//tells what the room looks like
@@ -164,7 +167,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//All OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new CaveRoom[5][5];
+		CaveExplorer.caves = new NPCRoom[5][5];
 		//2.Populate with caves and a default description hint: when starting use coordinates (helps debugging)
 		for(int row =0;row<CaveExplorer.caves.length;row++) {
 			//PLEASE PAY ATTENTIONS TO THE DIFFERENCE:
@@ -184,6 +187,9 @@ public class CaveRoom {
 		CaveRoom customRoom = new NPCRoom("Room");
 		CaveExplorer.caves[0][1] = customRoom;
 		CaveRoom customRoom2 = new CarsonCave("Room");
+		CaveRoom customRoom3 = new DavidCave("Quiet Room");
+		CaveExplorer.caves[0][1] = customRoom3;
+		
 		CaveExplorer.caves[1][2] = customRoom2;
 		
 		//4. Set your starting room:
