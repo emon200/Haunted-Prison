@@ -9,6 +9,8 @@ public class CaveRoom {
 	//the rooms are organize by direction, 'null' signifies no room/door in that direction
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
+	public String gaurdNum;
+	public String bulletCount;
 
 	//constants
 	public static final int NORTH = 0;
