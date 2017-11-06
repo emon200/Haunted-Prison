@@ -164,7 +164,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//All OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new NPCRoom[5][5];
+		CaveExplorer.caves = new CaveRoom[5][5];
 		//2.Populate with caves and a default description hint: when starting use coordinates (helps debugging)
 		for(int row =0;row<CaveExplorer.caves.length;row++) {
 			//PLEASE PAY ATTENTIONS TO THE DIFFERENCE:
@@ -179,15 +179,21 @@ public class CaveRoom {
 		CaveExplorer.npcs = new NPC[1];
 		CaveExplorer.npcs[0]=new NPC();
 		CaveExplorer.npcs[0].setposition(1, 1);
+		
 		//ADD EACH PERSON's ROOM LIKE THIS:
 		CaveRoom customRoom = new NPCRoom("Room");
-		CaveExplorer.caves[2][3] = customRoom;
+		CaveExplorer.caves[0][1] = customRoom;
+		CaveRoom customRoom2 = new CarsonCave("Room");
+		CaveExplorer.caves[1][2] = customRoom2;
+		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
+		
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[1][1].setConnection(EAST, c[1][2], new Door());
  		
 	}
 
@@ -213,9 +219,8 @@ public class CaveRoom {
 
 	public Door getDoor(int direction) {
 		if(direction >= 0 && direction <doors.length) {
-		return doors[direction];
-		}else
-		{
+			return doors[direction];
+		}else {
 			return null;
 		}
 	}
