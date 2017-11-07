@@ -1,5 +1,8 @@
 package caveExplorer;
 
+import DavidCarson.CarsonCave;
+import DavidCarson.DavidCave;
+
 public class CaveRoom {
 
 	private String description;//tells what the room looks like
@@ -114,11 +117,11 @@ public class CaveRoom {
 		String dirs = validKeys();
 		respondToKey(dirs.indexOf(input));
 	}
-
 	/**
 	 * override to add more keys, but always include 'wdsa'
 	 * @return
 	 */
+	//method has to be public to be able to override
 	public String validKeys() {
 		return "wdsa";
 	}
@@ -169,7 +172,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new NPCRoom[5][5];
+		CaveExplorer.caves = new CaveRoom[5][5];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
@@ -186,7 +189,13 @@ public class CaveRoom {
 		CaveExplorer.npcs[0].setposition(1, 1);
 		//ADD EACH PERSON's ROOM LIKE THIS:
 		CaveRoom customRoom = new NPCRoom("Room");
-		CaveExplorer.caves[2][3] = customRoom;
+		CaveExplorer.caves[0][1] = customRoom;
+		CaveRoom customRoom2 = new CarsonCave("Room");
+		CaveRoom customRoom3 = new DavidCave("Quiet Room");
+		CaveExplorer.caves[0][0] = customRoom3;
+		
+		CaveExplorer.caves[1][2] = customRoom2;
+		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();

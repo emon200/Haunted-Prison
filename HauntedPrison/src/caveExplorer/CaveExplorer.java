@@ -16,6 +16,7 @@ public class CaveExplorer {
 		CaveRoom.setUpCaves();
 		
 		inventory = new Inventory();
+		inventory.setHp(10);
 		startExploring();
 	}
 
