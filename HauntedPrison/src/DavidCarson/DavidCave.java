@@ -52,7 +52,7 @@ public class DavidCave extends CaveRoom {
 				s = CaveExplorer.in.nextLine();
 				check++;
 				}
-				if(check >4) {
+				if(check >3) {
 				  CaveExplorer.print("You took too long to do something! Zombies have come and chased you out!");
 				  visited = true;
 				  chatting = false;
