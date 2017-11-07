@@ -6,7 +6,7 @@ import caveExplorer.CaveRoom;
 public class DavidCave extends CaveRoom {
 
 
-	boolean visited = false;
+	boolean visited;
 	private String activeDescription;
 	private String inactiveDescription;
 	private int check;
@@ -15,6 +15,7 @@ public class DavidCave extends CaveRoom {
 		super(description);
 		this.activeDescription = "You see something in the distance";
 		this.inactiveDescription = "This was where you found the med kit";
+		this.visited = false;
 	}
 	public String validKeys() {
 		return "wdsae";
@@ -53,12 +54,15 @@ public class DavidCave extends CaveRoom {
 				}
 				if(check >4) {
 				  CaveExplorer.print("You took too long to do something! Zombies have come and chased you out!");
+				  visited = true;
 				  chatting = false;
+				  
 				}
 				else {
 					if(s.equalsIgnoreCase("e")) {
 					CaveExplorer.print("You applied the med kit onto yourself and suddenly feel revitalized!");
 				    CaveExplorer.inventory.setHp(100);
+				    visited = true;
 				    chatting = false;
 					}
 				}

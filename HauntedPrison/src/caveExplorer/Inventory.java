@@ -52,6 +52,7 @@ public class Inventory {
 				map+= text + "\n";
 			}
 		}
+		map+= "Current HP:" + hp;
 		
 	}
 
