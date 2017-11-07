@@ -28,9 +28,9 @@ public class DavidCave extends CaveRoom {
 	}
 	
 	public void performAction(int direction) {
-		super.performAction(direction);
+		//super.performAction(direction);
 		if(direction == 4) {
-			if(!visited) {
+			if(visited == false) {
 				interact();
 			}
 			else {
@@ -81,10 +81,10 @@ public class DavidCave extends CaveRoom {
 
 	public String getDescription() {
 		if(visited == false) {
-			return super.getDescription() + "\n"+getInactiveDescription();
+			return super.getDescription() + "\n"+getActiveDescription();
 		}else {
 			String npcDesc = "";
-				npcDesc = getActiveDescription();
+				npcDesc = getInactiveDescription();
 				return super.getDescription() + "\n" + npcDesc;
 			
 		}
