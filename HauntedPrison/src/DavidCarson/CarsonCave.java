@@ -32,4 +32,5 @@ public class CarsonCave extends CaveRoom{
 	public String getDescription() {
 		return super.getDescription();
 	}
+	
 }
