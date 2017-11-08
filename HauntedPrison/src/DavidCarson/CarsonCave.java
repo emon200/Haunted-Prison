@@ -23,7 +23,7 @@ public class CarsonCave extends CaveRoom{
 		}else {
 			CaveExplorer.print("That key does nothing");
 		}
-	}
+	}//
 	
 	public String getContents() {
 		return "G";
