@@ -4,6 +4,7 @@ public class Inventory {
 
 	public static boolean hasWeapon;
 	private String map;
+	public static int hp;
 	
 	public Inventory() {
 		updateMap();
@@ -52,6 +53,10 @@ public class Inventory {
 	public String getDescription() {
 		return map;
 //		return "You have nothing in your inventory.";
+	}
+
+	public void setHp(int i) {
+		Inventory.hp = i;
 	}
 
 }
