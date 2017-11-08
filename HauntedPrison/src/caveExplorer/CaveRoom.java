@@ -133,13 +133,13 @@ public class CaveRoom {
 	}
 
 
-	private boolean isValid(String input) {
+	public boolean isValid(String input) {
 		String validEntries = validKeys();
 		return validEntries.indexOf(input) > -1 && input.length() ==1;
 	}
 
 
-	private void respondToKey(int direction) {
+	public void respondToKey(int direction) {
 		//first, protect against null pointer exception
 		//(user cannot go through non-existent door
 		if(direction < 4) {

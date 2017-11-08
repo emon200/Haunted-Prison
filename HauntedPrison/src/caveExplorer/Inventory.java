@@ -2,6 +2,7 @@ package caveExplorer;
 
 public class Inventory {
 
+	public static boolean hasWeapon;
 	private String map;
 	
 	public Inventory() {
