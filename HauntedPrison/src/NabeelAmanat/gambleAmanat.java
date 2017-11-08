@@ -69,6 +69,7 @@ public class gambleAmanat extends CaveRoom {
 						visited = true;
 					}
 					}
+					//xS
 				}
 			
 
