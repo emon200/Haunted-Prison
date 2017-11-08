@@ -1,6 +1,7 @@
 package caveExplorer;
 
 import NabeelAmanat.GaurdRoom;
+import NabeelAmanat.gambleAmanat;
 import DavidCarson.CarsonCave;
 import DavidCarson.DavidCave;
 
@@ -195,7 +196,10 @@ public class CaveRoom {
 		CaveExplorer.caves[0][1] = customRoom;
 		CaveRoom customRoom2 = new CarsonCave("Room");
 		CaveRoom customRoom3 = new DavidCave("Quiet Room");
+		CaveRoom customRoom4 = new gambleAmanat("Room");
+		
 		CaveExplorer.caves[0][0] = customRoom3;
+		CaveExplorer.caves[0][2] = customRoom4;
 		
 		CaveExplorer.caves[1][2] = customRoom2;
 		
@@ -207,6 +211,7 @@ public class CaveRoom {
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 		c[1][1].setConnection(EAST, c[1][2], new Door());
 		c[0][1].setConnection(WEST, c[0][0], new Door());
+		c[0][1].setConnection(EAST, c[0][2], new Door());
 		/**
 		 * Special requests:
 		 * moving objects in caves
