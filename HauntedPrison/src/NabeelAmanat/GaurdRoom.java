@@ -4,13 +4,14 @@ import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
 import caveExplorer.Inventory;
 
-public class gaurdRoom extends CaveRoom {
+public class GaurdRoom extends CaveRoom {
 	
 	private String finalAnswer ="";
 
-	public gaurdRoom(String description) {
+	public GaurdRoom(String description) {
 		super(description);
 	}
+	
 	public void startMission() {
 		CaveExplorer.print("You have entered the " +super.gaurdNum + " room.");
 		if(Inventory.hasWeapon == true) {
@@ -60,10 +61,6 @@ public class gaurdRoom extends CaveRoom {
 	public void printAllowedEntry() {
 		System.out.println("You can only enter 'e' or 'n'.");
 	}
-	public void performAction(int direction) {
-		System.out.println("That key does nothing.");
-	}
-	
 	private void noWeapon() {
 		System.out.println("Looks like you cant't/ won't use the gun, time to die.");
 		System.out.println("oooff, looks like your dead");

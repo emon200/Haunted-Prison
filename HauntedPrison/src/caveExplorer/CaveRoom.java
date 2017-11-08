@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import NabeelAmanat.GaurdRoom;
+
 public class CaveRoom {
 
 	private String description;//tells what the room looks like
@@ -169,6 +171,7 @@ public class CaveRoom {
 	 * and all the connections
 	 */
 	public static void setUpCaves() {
+		
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
 		CaveExplorer.caves = new NPCRoom[5][5];
@@ -188,14 +191,18 @@ public class CaveRoom {
 		CaveExplorer.npcs[0].setposition(1, 1);
 		//ADD EACH PERSON's ROOM LIKE THIS:
 		CaveRoom customRoom = new NPCRoom("Room");
+		CaveRoom nabeelRoom = new GaurdRoom("time to get key");
+		CaveExplorer.caves[1][1] = nabeelRoom;
 		CaveExplorer.caves[2][3] = customRoom;
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
-		//5. Set up dooors
+		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		//c[1][1].setConnection(SOUTH, c[0][1], new Door());
 		/**
+		 * ++
 		 * Special requests:
 		 * moving objects in caves
 		 * what happens when you lose?
