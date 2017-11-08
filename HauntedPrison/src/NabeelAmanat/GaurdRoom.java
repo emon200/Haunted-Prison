@@ -6,6 +6,7 @@ import caveExplorer.Inventory;
 
 public class GaurdRoom extends CaveRoom {
 	
+	boolean visited;
 	private String finalAnswer ="";
 
 	public GaurdRoom(String description) {
@@ -20,6 +21,7 @@ public class GaurdRoom extends CaveRoom {
 			String input = CaveExplorer.in.nextLine();
 			interpretInput(input);
 			if(finalAnswer.equals("e")) {
+				
 				CaveExplorer.print("PEW!!! PEW!!!");
 				CaveExplorer.print("He is dead, lets go grab the key that he has.");
 				
@@ -52,7 +54,7 @@ public class GaurdRoom extends CaveRoom {
 		finalAnswer= input;
 	}
 	public String validKeys() {
-		return "en";
+		return "wdsaen";
 	}
 
 	/**
@@ -66,6 +68,14 @@ public class GaurdRoom extends CaveRoom {
 		System.out.println("oooff, looks like your dead");
 	}
 
+	public String getContents() {
+		if(!visited) {
+			return "%";
+		}else {
+			//return what would've been returned otherwise
+			return super.getContents();
+		}
+	}
 	
 
 	

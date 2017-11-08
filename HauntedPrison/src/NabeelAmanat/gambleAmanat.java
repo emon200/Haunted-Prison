@@ -37,11 +37,9 @@ public class gambleAmanat extends CaveRoom {
 	
 	private void interact() {
 		int x = 0;
-		int hp = caveExplorer.Inventory.hp;
+		int hp = CaveExplorer.inventory.getHp();
 			CaveExplorer.print("Tarot cards start to form around you, do you dare take one and read your fortune?");
 			String s = CaveExplorer.in.nextLine();
-			chatting = true;
-			while(chatting) {
 					if(s.equalsIgnoreCase("e")) {
 					CaveExplorer.print("As fate has it you...");
 					x = (int)((Math.random())*5);
@@ -49,6 +47,7 @@ public class gambleAmanat extends CaveRoom {
 						CaveExplorer.print("...have been gravely injured.");
 						CaveExplorer.inventory.setHp(hp-50);
 						visited = true;
+						//chatting = false;
 					}
 					else if(x > 1 && x < 2) {
 						CaveExplorer.print("...are completely rejuvenated.");
@@ -71,7 +70,7 @@ public class gambleAmanat extends CaveRoom {
 					}
 					}
 				}
-			}
+			
 
 		    
 	
