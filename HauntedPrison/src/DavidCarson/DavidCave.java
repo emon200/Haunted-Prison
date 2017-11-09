@@ -13,8 +13,8 @@ public class DavidCave extends CaveRoom {
 	private boolean chatting;
 	public DavidCave(String description) {
 		super(description);
-		this.activeDescription = "You see something in the distance";
-		this.inactiveDescription = "This was where you found the med kit";
+		this.activeDescription = "On the corner you see the med-bay where prisoners would be brought for treatment after their usual scuffles...";
+		this.inactiveDescription = "This is where the med-bay is located...";
 		this.visited = false;
 	}
 	public String validKeys() {
@@ -42,7 +42,7 @@ public class DavidCave extends CaveRoom {
 	}
 	
 	private void interact() {
-			CaveExplorer.print("At the corner of the room you see a small med kit. You should try applying it!");
+			CaveExplorer.print("Inside the room, you notice a spare med-kit lying on the ground... It would be a waste not to use it...  ");
 			String s = CaveExplorer.in.nextLine();
 			chatting = true;
 			check = 0;
@@ -60,7 +60,7 @@ public class DavidCave extends CaveRoom {
 				}
 				else {
 					if(s.equalsIgnoreCase("e")) {
-					CaveExplorer.print("You applied the med kit onto yourself and suddenly feel revitalized!");
+					CaveExplorer.print("You bandaged your wounds with the med kit and feel much better...");
 				    CaveExplorer.inventory.setHp(100);
 				    visited = true;
 				    chatting = false;
