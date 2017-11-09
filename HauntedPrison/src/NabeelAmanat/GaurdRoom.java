@@ -6,13 +6,18 @@ import caveExplorer.Inventory;
 
 public class GaurdRoom extends CaveRoom {
 	
+	boolean visited;
 	private String finalAnswer ="";
 
 	public GaurdRoom(String description) {
 		super(description);
 	}
 	
-	public void startMission() {
+	public void performAction(int direction) {
+			startMission();
+	}
+	
+	private void startMission() {
 		CaveExplorer.print("You have entered the " +super.gaurdNum + " room.");
 		if(Inventory.hasWeapon == true) {
 			CaveExplorer.print("Looks like your lucky enough to have a gun with " + super.bulletCount+", lets go ahead and shoot the gaurd.");
@@ -20,9 +25,9 @@ public class GaurdRoom extends CaveRoom {
 			String input = CaveExplorer.in.nextLine();
 			interpretInput(input);
 			if(finalAnswer.equals("e")) {
+				
 				CaveExplorer.print("PEW!!! PEW!!!");
 				CaveExplorer.print("He is dead, lets go grab the key that he has.");
-				
 			}
 			else {
 				noWeapon();
@@ -37,22 +42,8 @@ public class GaurdRoom extends CaveRoom {
 	 * @return
 	 */
 	
-	public void interpretInput(String input) {
-		System.err.println("interpretting input "+input);
-		while(!isValid(input)) {
-			printAllowedEntry();
-			input = CaveExplorer.in.nextLine();
-		}
-		System.err.println("marked as valid: "+input);
-		//task: convert user input into a direction
-		//DO NOT USE AN IF STATEMENT
-		//(or, if you must, don't use more than 1)
-		String dirs = validKeys();
-		respondToKey(dirs.indexOf(input));
-		finalAnswer= input;
-	}
 	public String validKeys() {
-		return "en";
+		return "wdsaen";
 	}
 
 	/**
@@ -64,8 +55,17 @@ public class GaurdRoom extends CaveRoom {
 	private void noWeapon() {
 		System.out.println("Looks like you cant't/ won't use the gun, time to die.");
 		System.out.println("oooff, looks like your dead");
+		CaveExplorer.playing = false;
 	}
 
+	public String getContents() {
+		if(!visited) {
+			return "%";
+		}else {
+			//return what would've been returned otherwise
+			return super.getContents();
+		}
+	}
 	
 
 	
