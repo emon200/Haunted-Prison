@@ -5,8 +5,8 @@ import caveExplorer.CaveRoom;
 
 public class CarsonCave extends CaveRoom{
 	
-	private boolean visited = true;
-	private boolean chatting = true;
+	private boolean visited;
+	private boolean chatting;
 	
 	public CarsonCave(String description) {
 		super(description);
@@ -35,8 +35,10 @@ public class CarsonCave extends CaveRoom{
 	private void interact() {
 		CaveExplorer.print("In this room you find a handgun and a zombie slowly aproaching you." + "\n" + "Press e to pick up the gun");
 		String s = CaveExplorer.in.nextLine();
+		visited = false;
+		chatting = true;
 		while(chatting) {
-			if(!s.equals("e")) {
+			if(s.equals("e")) {
 				CaveExplorer.print("You picked up the gun and shot the zombie");
 				visited = true;
 			}else {
