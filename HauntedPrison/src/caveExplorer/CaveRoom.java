@@ -202,6 +202,7 @@ public class CaveRoom {
 		//5. Set up dooors
 		CaveRoom[][] c = CaveExplorer.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[0][1].setConnection(WEST, c[0][0], new Door());
 		/**
 		 * Special requests:
 		 * moving objects in caves
