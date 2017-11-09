@@ -50,7 +50,7 @@ public class CarsonCave extends CaveRoom{
 	}
 	
 	public String getContents() {
-		return "G";
+		return "Z";
 	}
 	
 	public String getDescription() {
