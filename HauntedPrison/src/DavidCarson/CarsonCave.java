@@ -43,10 +43,11 @@ public class CarsonCave extends CaveRoom{
 				visited = true;
 			}else {
 				CaveExplorer.print("You fumbled the gun and the zombie hurt you");
-				CaveExplorer.inventory.setHp(CaveExplorer.inventory.getHp() - 10);
+				CaveExplorer.inventory.setHp(CaveExplorer.inventory.getHp() - 20);
+				CaveExplorer.print("\nTry shooting the zombie again.");
 			}
 			chatting = false;
-		}		
+		}
 	}
 	
 	public String getContents() {
