@@ -22,6 +22,7 @@ public class CarsonCave extends CaveRoom{
 	public void performAction(int direction) {
 		if(direction == 4) {
 			CaveExplorer.print("You have found a guard room.");
+			interact();
 		}else {
 			CaveExplorer.print("That key does nothing");
 		}
