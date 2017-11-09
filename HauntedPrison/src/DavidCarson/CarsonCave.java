@@ -5,6 +5,8 @@ import caveExplorer.CaveRoom;
 
 public class CarsonCave extends CaveRoom{
 	
+	private boolean chatting;
+	
 	public CarsonCave(String description) {
 		super(description);
 	}
@@ -23,7 +25,21 @@ public class CarsonCave extends CaveRoom{
 		}else {
 			CaveExplorer.print("That key does nothing");
 		}
-	}//
+	}
+	
+	private void interact() {
+		CaveExplorer.print("In this room you find a handgun and a zombie slowly aproaching you." + "\n" + "Press e to pick up the gun");
+		String s = CaveExplorer.in.nextLine();
+		chatting = true;
+		while(chatting) {
+			if(!s.equals("e")) {
+				CaveExplorer.print("You picked up the gun and shot the zombie");
+			}else {
+				CaveExplorer.print("You fumbled the gun and the zombie killed you");
+				CaveExplorer.inventory.setHp(0);
+			}
+		}		
+	}
 	
 	public String getContents() {
 		return "G";
@@ -31,5 +47,6 @@ public class CarsonCave extends CaveRoom{
 	
 	public String getDescription() {
 		return super.getDescription();
-	}
+	}//
+	
 }
