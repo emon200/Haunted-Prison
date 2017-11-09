@@ -24,7 +24,7 @@ public class GaurdRoom extends CaveRoom {
 				
 				CaveExplorer.print("PEW!!! PEW!!!");
 				CaveExplorer.print("He is dead, lets go grab the key that he has.");
-			/x	
+				
 			}
 			else {
 				noWeapon();
