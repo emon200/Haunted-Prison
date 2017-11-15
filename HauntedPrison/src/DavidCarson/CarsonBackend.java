@@ -30,26 +30,30 @@ public class CarsonBackend implements DavidSupport {
 		return chart;
 	}
 	
-	public int[] getCoordInput() {
-		String input = CaveExplorer.in.nextLine();
-		int[] coords = toCoords(input);
-		while(coords == null){
-			System.out.println("You must enter cordinates of the form:\n <row>,<col>" + "\n<row> and <col> should be integers.");
-			input = CaveExplorer.in.nextLine();
-			coords = toCoords(input);
-		}
-		return coords;
-	}
-	
-	public int[] getSecondCoordInput() {
+	public void getCoordInput() {
+		CaveExplorer.print("Please enter the 1st coordinate");
+		String input1 = CaveExplorer.in.nextLine();
+		int[] coord1 = toCoords(input1);
+		
+		CaveExplorer.print("Please enter the 2nd coordinate");
 		String input2 = CaveExplorer.in.nextLine();
-		int[] coords2 = toCoords(input2);
-		while(coords2 == null){
-			System.out.println("You must enter cordinates of the form:\n <row>,<col>" + "\n<row> and <col> should be integers.");
-			input2 = CaveExplorer.in.nextLine();
-			coords2 = toCoords(input2);
+		int[] coord2 = toCoords(input2);
+		
+		if(isValidInput(coord1, coord2)) {
+			int[][] guess = {coord1, coord2};
+		} else {
+			CaveExplorer.print("Invalid input, make sure to not use the same coordinates");
 		}
-		return coords2;
+
+		if(chart[coord1[0]][coord1[1]].getValue() == chart[coord2[0]][coord2[1]].getValue()) {
+			chart[coord1[0]][coord1[1]].setMatched(true);
+			chart[coord2[0]][coord2[1]].setMatched(true);
+			
+		}
+	}
+
+	private boolean isValidInput(int[] coord1, int[] coord2) {
+		
 	}
 
 	private int[] toCoords(String input) {
