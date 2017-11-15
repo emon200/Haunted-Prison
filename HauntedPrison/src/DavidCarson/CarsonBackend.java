@@ -53,7 +53,10 @@ public class CarsonBackend implements DavidSupport {
 	}
 
 	private boolean isValidInput(int[] coord1, int[] coord2) {
-		
+		if(coord1 != coord2) {
+			return true;
+		}
+		return false;
 	}
 
 	private int[] toCoords(String input) {
