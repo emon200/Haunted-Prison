@@ -1,8 +1,6 @@
 package DavidCarson;
 
 import caveExplorer.CaveExplorer;
-import caveExplorer.CaveRoom;
-import caveExplorer.NPCRoom;
 
 public class CarsonBackend implements DavidSupport {
 	
@@ -42,12 +40,23 @@ public class CarsonBackend implements DavidSupport {
 		}
 		return coords;
 	}
+	
+	public int[] getSecondCoordInput() {
+		String input2 = CaveExplorer.in.nextLine();
+		int[] coords2 = toCoords(input2);
+		while(coords2 == null){
+			System.out.println("You must enter cordinates of the form:\n <row>,<col>" + "\n<row> and <col> should be integers.");
+			input2 = CaveExplorer.in.nextLine();
+			coords2 = toCoords(input2);
+		}
+		return coords2;
+	}
 
 	private int[] toCoords(String input) {
 		try{
 			int a = Integer.parseInt(input.substring(0,1));
 			int b = Integer.parseInt(input.substring(2,3));
-			if(input.substring(1,2).equals(",") && input.length() ==3){
+			if(input.substring(1,2).equals(",") && input.length() == 3){
 				int[] coords = {a,b};
 				return coords;
 			}else{
@@ -67,13 +76,12 @@ public class CarsonBackend implements DavidSupport {
 	}
 
 	public void reveal(DavidCarsonChart p) {
-		
+		p.reveal();
 	}
 	
 	private void shuffle(int[] arr) {
 		for(int i = 0;i<arr.length;i++) {
-			swap(arr,(int)(Math.random()*arr.length),
-					(int)(Math.random()*arr.length));
+			swap(arr,(int)(Math.random()*arr.length), (int)(Math.random()*arr.length));
 		}
 
 	}
