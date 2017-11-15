@@ -8,16 +8,17 @@ public class FrontEndAmanat implements NabeelSupport{
 	
 	public static final void main(String[] args) {
 		FrontEndAmanat demo = new FrontEndAmanat();
-		demo.play();
+		demo.startGame();
 	}
 	
-	private void play() {
-		
-	}
-
 	private void startGame() {
-		AmanatNabeelPlot[][] plots = backend.getPlots();
-		AmanatNabeelPlot s = null;
+		//AmanatNabeelPlot[][] plots = backend.getPlots();
+		AmanatNabeelPlot[][] plots = new AmanatNabeelPlot[6][6];
+		for(int i=0;i<plots.length;i++) {
+			for(int x =0; x<plots[i].length;x++) {
+				
+			}
+		}
 		ships = 5;
 		setUp();
 		while(ships >0) {
