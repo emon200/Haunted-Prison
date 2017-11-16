@@ -97,16 +97,12 @@ public class DavidFrontend implements CarsonSupport {
 		for(int row = 0; row < plots.length; row++){
 			System.out.print(rows.substring(row, row+1)+" ");
 			for(int col = 0; col < plots[row].length; col++){
-				//if(plots[row][col].isRevealed()){
 					if(plots[row][col].isMatched()){
 						System.out.print(plots[row][col].getValue());
 					}else{
 						System.out.print("-");	
 					}
 
-				//}else{
-					//System.out.print("-");
-				
 			}
 			System.out.println(" " + rows.substring(row, row+1));
 		}
