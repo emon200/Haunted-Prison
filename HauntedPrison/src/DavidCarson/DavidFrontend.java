@@ -4,15 +4,17 @@ import java.util.Scanner;
 
 import caveExplorer.CaveExplorer;
 
+
 public class DavidFrontend implements CarsonSupport {
 
 	private DavidSupport backend;
 	private int tries;
 	private String cheatcode;
 	private boolean playing;
+	private boolean chatting;
 	public DavidFrontend() {
 		backend = new CarsonBackend(this);
-		tries = 5;
+		tries = 10;
 		cheatcode = "pineapples";
 	}
 
@@ -26,7 +28,17 @@ public class DavidFrontend implements CarsonSupport {
 
 	private void play() {
 		CaveExplorer.print("Are you ready to get started? If so, enter 'p' to begin or enter'r' to begin  ");
-		startPlaying();
+		String s = CaveExplorer.in.nextLine();
+		if(s.equalsIgnoreCase("r")){
+			CaveExplorer.print("In your display you will find a switchboard, with your tasks being to match up all the pairs of switches..."
+					+ "When matching up the combinations you will be allowed only 10 failures before the switchboard locks down and ultimately you will fail the task..."
+					+ "Good Luck...\n\n      - - press enter - -");
+			CaveExplorer.in.nextLine();
+			play();
+		}else{
+			startPlaying();
+		}
+
 		
 			
 		}
@@ -38,8 +50,8 @@ public class DavidFrontend implements CarsonSupport {
 		playing = true;
           while(playing) {
         	  displayField(plots);
-      		  displayScoreStatus(p);
-        	  System.out.println("What will be your 2 coordinate to choose from?");
+      		  displayScoreStatus();
+        	  System.out.println("Please pick your 2 coordinates to choose from!");
       			//int[] coords = backend.getCoordinates();
       			//p = plots[coords[0]][coords[1]];
       			//backend.reveal(p);
@@ -74,8 +86,8 @@ public class DavidFrontend implements CarsonSupport {
 	}
 	
 
-	private void displayScoreStatus(DavidCarsonChart p) {
-		// TODO Auto-generated method stubx
+	private void displayScoreStatus() {
+		CaveExplorer.print("You currently have "+tries+" attempts left before the switchboard locks down..");
 		
 	}
 	
@@ -89,7 +101,7 @@ public class DavidFrontend implements CarsonSupport {
 					if(plots[row][col].isMatched()){
 						System.out.print(plots[row][col].getValue());
 					}else{
-						System.out.print("X");	
+						System.out.print("-");	
 					}
 
 				//}else{
@@ -100,6 +112,56 @@ public class DavidFrontend implements CarsonSupport {
 		}
 		System.out.println(columns.substring(0, plots[0].length+2));
 	}
+	
+	private void checkIfBomb(DavidCarsonChart p) {
+		DavidCarsonChart[][] plots = backend.getPlots();
+		int r = p.getRow();
+		int c = p.getCol();
+		int east = p.getCol()+1;
+		int west = p.getCol()+1;
+		int north = p.getRow()-1;
+		int south= p.getRow()+1;
+		if(p.isHasBomb()) {
+			if(valid(r,east)) {
+				plots[r][east].setMatched(true);
+				matchOther(plots[r][east].getValue(),plots[r][east]);
+			}
+			 if(valid(r,west)) {
+				 plots[r][west].setMatched(true);
+				 matchOther(plots[r][west].getValue(),plots[r][west]);
+			}
+			 if(valid(c,north)) {
+				 plots[c][north].setMatched(true);
+				 matchOther(plots[c][north].getValue(),plots[c][north]);
+				}
+			 if(valid(c,south)) {
+				 plots[c][south].setMatched(true);
+				 matchOther(plots[c][south].getValue(),plots[c][south]);
+				}
+		}
+		
+	}
+	private void matchOther(int i, DavidCarsonChart plots2) {
+		String rows = "0123456789";
+		String columns = "  0123456789";
+		DavidCarsonChart[][] plots = backend.getPlots();
+		for(int row = 0; row < plots.length; row++){
+			for(int col = 0; col < plots[row].length; col++){
+				if(plots[row][col] != plots2) {
+					if(plots[row][col].getValue() == i){
+						plots[row][col].setMatched(true);
+					}
+				}
+			}
+			System.out.println(" " + rows.substring(row, row+1));
+		}
+		
+	}
+
+	private boolean valid(int row, int col){
+		return row >= 0 && row< backend.getPlots().length && col >= 0 && col < backend.getPlots()[row].length;
+	}
+	
 }
 
 

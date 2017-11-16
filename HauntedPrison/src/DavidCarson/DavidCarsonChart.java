@@ -7,7 +7,16 @@ public class DavidCarsonChart {
 	private int col;
 	private int value;
 	private boolean matched;
+	private boolean hasBomb;
 	
+	public boolean isHasBomb() {
+		return hasBomb;
+	}
+
+	public void setHasBomb(boolean hasBomb) {
+		this.hasBomb = hasBomb;
+	}
+
 	public DavidCarsonChart(int row, int col, int value) {
 		revealed = false;
 		matched = false;
