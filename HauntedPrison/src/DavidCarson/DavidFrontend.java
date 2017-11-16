@@ -41,27 +41,39 @@ public class DavidFrontend implements CarsonSupport {
       			//p = plots[coords[0]][coords[1]];
       			//backend.reveal(p);
         	  backend.getCoordInput();
-
-      			if(tries==0) {
-      				playing = false;
-      		}
+      			if(tries==0) 
+      			{
+      			System.out.println("You failed to match up all the combinations...");
+      			playing = false;
+      			}
+      			else {
+      				if(playerWin(plots)) {
+      					System.out.println("You have matched up all the the switches and have done so in within the limited amount of tries you've been given.");
+      					playing = false;
+      				}
+      			}
+      		  
           }
-      		displayScoreStatus(p);
+      		
         	  
           }
+	private boolean playerWin(DavidCarsonChart[][] plots) {
+		for(int row = 0; row < plots.length; row++){
+			for(int col = 0; col < plots[row].length; col++){
+				if(!plots[row][col].isMatched()){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+
 	private void displayScoreStatus(DavidCarsonChart p) {
 		// TODO Auto-generated method stubx
 		
 	}
 	
-	private void checkValue(int[] arr1,int[] arr2) {
-		
-	}
-	private boolean validCoords(int row,int col) {
-		return false;
-	}
-
-
 	private void displayField(DavidCarsonChart[][] plots) {
 		String rows = "0123456789";
 		String columns = "  0123456789";
