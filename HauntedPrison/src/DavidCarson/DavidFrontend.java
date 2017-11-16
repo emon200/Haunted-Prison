@@ -50,7 +50,7 @@ public class DavidFrontend implements CarsonSupport {
         	  
           }
 	private void displayScoreStatus(DavidCarsonChart p) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubx
 		
 	}
 	

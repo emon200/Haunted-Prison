@@ -11,7 +11,7 @@ public interface DavidSupport {
 	
 	
 	/**
-	 * reveals the value of the coordinate inputs
+	 * reveals the value of the coordinate inputsx
 	 * @param p
 	 */
 	void reveal(DavidCarsonChart p);
