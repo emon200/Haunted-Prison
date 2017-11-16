@@ -131,13 +131,13 @@ public class DavidFrontend implements CarsonSupport {
 				 plots[r][west].setMatched(true);
 				 matchOther(plots[r][west].getValue(),plots[r][west]);
 			}
-			 if(valid(c,north)) {
-				 plots[c][north].setMatched(true);
-				 matchOther(plots[c][north].getValue(),plots[c][north]);
+			 if(valid(north,c)) {
+				 plots[north][c].setMatched(true);
+				 matchOther(plots[north][c].getValue(),plots[north][c]);
 				}
-			 if(valid(c,south)) {
-				 plots[c][south].setMatched(true);
-				 matchOther(plots[c][south].getValue(),plots[c][south]);
+			 if(valid(south,c)) {
+				 plots[south][c].setMatched(true);
+				 matchOther(plots[south][c].getValue(),plots[south][c]);
 				}
 		}
 		
