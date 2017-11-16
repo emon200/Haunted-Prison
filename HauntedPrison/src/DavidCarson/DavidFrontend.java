@@ -158,6 +158,9 @@ public class DavidFrontend implements CarsonSupport {
 	private boolean valid(int row, int col){
 		return row >= 0 && row< backend.getPlots().length && col >= 0 && col < backend.getPlots()[row].length;
 	}
+	public void removeTries() {
+		tries--;
+	}
 	
 }
 
