@@ -18,5 +18,7 @@ public interface DavidSupport {
 
 	DavidCarsonChart[][] getPlots();
 
-	void getCoordInput();
+	int[][] getCoordInput();
+
+	boolean isMatch(int[] coords, int[] coords2);
 }

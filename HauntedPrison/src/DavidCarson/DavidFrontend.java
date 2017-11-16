@@ -1,5 +1,7 @@
 package DavidCarson;
 
+import java.util.Scanner;
+
 import caveExplorer.CaveExplorer;
 
 public class DavidFrontend implements CarsonSupport {
@@ -15,6 +17,7 @@ public class DavidFrontend implements CarsonSupport {
 	}
 
 	public static final void main(String[] args) {
+		CaveExplorer.in = new Scanner(System.in);
 		DavidFrontend demo = new DavidFrontend();
 		demo.play();
 		
@@ -40,7 +43,8 @@ public class DavidFrontend implements CarsonSupport {
       			//int[] coords = backend.getCoordinates();
       			//p = plots[coords[0]][coords[1]];
       			//backend.reveal(p);
-        	  backend.getCoordInput();
+        	  int[][] coords = backend.getCoordInput();
+        	  boolean match = backend.isMatch(coords[0], coords[1]);
       			if(tries==0) 
       			{
       			System.out.println("You failed to match up all the combinations...");
@@ -57,6 +61,7 @@ public class DavidFrontend implements CarsonSupport {
       		
         	  
           }
+
 	private boolean playerWin(DavidCarsonChart[][] plots) {
 		for(int row = 0; row < plots.length; row++){
 			for(int col = 0; col < plots[row].length; col++){
@@ -80,16 +85,16 @@ public class DavidFrontend implements CarsonSupport {
 		for(int row = 0; row < plots.length; row++){
 			System.out.print(rows.substring(row, row+1)+" ");
 			for(int col = 0; col < plots[row].length; col++){
-				if(plots[row][col].isRevealed()){
+				//if(plots[row][col].isRevealed()){
 					if(plots[row][col].isMatched()){
 						System.out.print(plots[row][col].getValue());
 					}else{
 						System.out.print("X");	
 					}
 
-				}else{
-					System.out.print("-");
-				}
+				//}else{
+					//System.out.print("-");
+				
 			}
 			System.out.println(" " + rows.substring(row, row+1));
 		}
