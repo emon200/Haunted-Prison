@@ -15,4 +15,8 @@ public interface DavidSupport {
 	 * @param p
 	 */
 	void reveal(DavidCarsonChart p);
+
+	DavidCarsonChart[][] getPlots();
+
+	void getCoordInput();
 }

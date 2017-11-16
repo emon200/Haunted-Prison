@@ -1,5 +1,6 @@
 package DavidCarson;
 
+import caveExplorer.BenNocklesPlot;
 import caveExplorer.CaveExplorer;
 
 public class CarsonBackend implements DavidSupport {
@@ -98,6 +99,11 @@ public class CarsonBackend implements DavidSupport {
 		arr[j] = arr[i];
 		arr[i] = x;
 
+	}
+
+	@Override
+	public DavidCarsonChart[][] getPlots() {
+			return chart;
 	}
 
 }
