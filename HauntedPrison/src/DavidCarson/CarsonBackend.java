@@ -12,7 +12,6 @@ public class CarsonBackend implements DavidSupport {
 		createValues();
 		this.frontend = frontend;
 		shuffle(values);
-		CaveExplorer.print(values.toString());
 		chart = new DavidCarsonChart[6][6];
 		createChart();
 	}
@@ -34,7 +33,7 @@ public class CarsonBackend implements DavidSupport {
 			values[i] = i;
 		}
 		for(int j = len/2; j < len; j++) {
-			values[j] = j - 18;
+			values[j] = j - (len/2);
 		}
 	} 
 
@@ -85,6 +84,9 @@ public class CarsonBackend implements DavidSupport {
 	private boolean isValidInput(int[] coord1, int[] coord2) {
 		if(coord1 != coord2) {
 			return true;
+		}
+		if(coord1[0] > chart.length || coord1[1] > chart.length || coord2[0] > chart.length || coord2[1] > chart.length) {
+			return false;
 		}
 		return false;
 	}
