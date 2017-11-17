@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import NabeelAmanat.GaurdRoom;
+import NabeelAmanat.gambleAmanat;
 import DavidCarson.CarsonCave;
 import DavidCarson.DavidCave;
 
@@ -12,8 +14,10 @@ public class CaveRoom {
 	//the rooms are organize by direction, 'null' signifies no room/door in that direction
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
+	public String gaurdNum;
+	public String bulletCount;
 
-	//constants
+	//constantss
 	public static final int NORTH = 0;
 	public static final int EAST = 1;
 	public static final int SOUTH =2;
@@ -134,13 +138,13 @@ public class CaveRoom {
 	}
 
 
-	private boolean isValid(String input) {
+	public boolean isValid(String input) {
 		String validEntries = validKeys();
 		return validEntries.indexOf(input) > -1 && input.length() ==1;
 	}
 
 
-	private void respondToKey(int direction) {
+	public void respondToKey(int direction) {
 		//first, protect against null pointer exception
 		//(user cannot go through non-existent door
 		if(direction < 4) {
@@ -188,12 +192,18 @@ public class CaveRoom {
 		CaveExplorer.npcs[0] = new NPC();
 		CaveExplorer.npcs[0].setposition(1, 1);
 		//ADD EACH PERSON's ROOM LIKE THIS:
-		CaveRoom customRoom = new NPCRoom("Room");
-		CaveExplorer.caves[0][1] = customRoom;
-		CaveRoom customRoom2 = new CarsonCave("Room");
+		CaveRoom customRoom = new NPCRoom("Room 0,1");
+		CaveRoom customRoom2 = new CarsonCave("Room 1,2");
 		CaveRoom customRoom3 = new DavidCave("Quiet Room");
-		CaveExplorer.caves[0][0] = customRoom3;
+		CaveRoom customRoom4 = new gambleAmanat("Room 0,2");
+		CaveRoom customRoom5 = new GaurdRoom("Room 2,1s"
+				+ "");
+
 		
+		CaveExplorer.caves[0][1] = customRoom;
+		CaveExplorer.caves[0][0] = customRoom3;
+		CaveExplorer.caves[0][2] = customRoom4;
+		CaveExplorer.caves[2][1] = customRoom5;
 		CaveExplorer.caves[1][2] = customRoom2;
 		
 		//4. Set your starting room:
@@ -204,6 +214,10 @@ public class CaveRoom {
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 		c[0][1].setConnection(WEST, c[0][0], new Door());
 		c[1][1].setConnection(EAST, c[1][2], new Door());
+		c[1][1].setConnection(EAST, c[1][2], new Door());
+		c[0][1].setConnection(WEST, c[0][0], new Door());
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		c[1][1].setConnection(SOUTH, c[2][1], new Door());
 		/**
 		 * Special requests:
 		 * moving objects in caves

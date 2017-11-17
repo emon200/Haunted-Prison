@@ -2,8 +2,10 @@ package caveExplorer;
 
 public class Inventory {
 	
+	public static boolean hasWeapon;
 	private String map;
 	private int hp;
+	
 	public Inventory() {
 		updateMap();
 	}
@@ -40,19 +42,19 @@ public class Inventory {
 						text+=" "+cr.getContents()+ " ";
 					}else if(i == 2) {
 						//draw space if door to south is open
-						if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()) {
-							text+="   ";
-						}else
-						{
-							text+="___";
+						if(cr.getDoor(CaveRoom.SOUTH) != null && 
+						cr.getDoor(CaveRoom.SOUTH).isOpen()){
+							text+="   ";//3 spaces
+						}else {
+							text += "___";
 						}
 					}
 				}//last caveroom in row
-				text+= "|";
-				map+= text + "\n";
+				text+="|";
+				map += text +"\n";
 			}
 		}
-		map+= "Current HP:" + hp;
+	 	map+= "Current HP:" + hp;
 		
 	}
 
@@ -60,5 +62,6 @@ public class Inventory {
 		return map;
 		//return "You have nothing in your inventory.";
 	}
+
 
 }
