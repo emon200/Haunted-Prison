@@ -11,7 +11,7 @@ public class DavidFrontend implements CarsonSupport {
 	private int tries;
 	private String cheatcode;
 	private boolean playing;
-	private boolean chatting;
+	private boolean chatting; 
 	public DavidFrontend() {
 		backend = new CarsonBackend(this);
 		tries = 10;
