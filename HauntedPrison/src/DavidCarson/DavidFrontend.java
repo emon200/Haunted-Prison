@@ -100,7 +100,7 @@ public class DavidFrontend implements CarsonSupport {
 					if(plots[row][col].isMatched()){
 						System.out.print(plots[row][col].getValue());
 					}else{
-						System.out.print("-");	
+						System.out.print("-");
 					}
 
 			}
@@ -109,31 +109,35 @@ public class DavidFrontend implements CarsonSupport {
 		System.out.println(columns.substring(0, plots[0].length+2));
 	}
 	
-	private void checkIfBomb(DavidCarsonChart p) {
+	public void checkIfBomb(DavidCarsonChart p) {
 		DavidCarsonChart[][] plots = backend.getPlots();
 		int r = p.getRow();
 		int c = p.getCol();
 		int east = p.getCol()+1;
-		int west = p.getCol()+1;
+		int west = p.getCol()-1;
 		int north = p.getRow()-1;
 		int south= p.getRow()+1;
 		if(p.isHasBomb()) {
-			CaveExplorer.print("You just triggered a bomb mechanic in the system!... \n All adjacent blocks gets matched!");
+			CaveExplorer.print("You just triggered a bomb mechanic in the system!... \n All adjacent blocks at these directions gets matched!");
 			if(valid(r,east)) {
 				plots[r][east].setMatched(true);
 				matchOther(plots[r][east].getValue(),plots[r][east]);
+				CaveExplorer.print("east");
 			}
 			 if(valid(r,west)) {
 				 plots[r][west].setMatched(true);
 				 matchOther(plots[r][west].getValue(),plots[r][west]);
+				 CaveExplorer.print("west");
 			}
 			 if(valid(north,c)) {
 				 plots[north][c].setMatched(true);
 				 matchOther(plots[north][c].getValue(),plots[north][c]);
+				 CaveExplorer.print("north");
 				}
 			 if(valid(south,c)) {
 				 plots[south][c].setMatched(true);
 				 matchOther(plots[south][c].getValue(),plots[south][c]);
+				 CaveExplorer.print("south");
 				}
 		}
 		

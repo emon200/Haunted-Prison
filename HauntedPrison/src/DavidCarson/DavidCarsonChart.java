@@ -17,12 +17,13 @@ public class DavidCarsonChart {
 		this.hasBomb = hasBomb;
 	}
 
-	public DavidCarsonChart(int row, int col, int value) {
+	public DavidCarsonChart(int row, int col, int value, boolean hasBomb) {
 		revealed = false;
 		matched = false;
 		this.row = row;
 		this.col = col;
 		this.value = value;
+		this.hasBomb = hasBomb;
 	}
 	
 	public boolean isMatched() {

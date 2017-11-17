@@ -6,14 +6,14 @@ public class CarsonBackend implements DavidSupport {
 
 	private CarsonSupport frontend;
 	private DavidCarsonChart[][] chart;
-	private int[] values;
+	private int[] values = new int[36];
 
 	public CarsonBackend(CarsonSupport frontend) {
-		int[] values = new int[100];
+		createValues();
 		this.frontend = frontend;
 		shuffle(values);
 		CaveExplorer.print(values.toString());
-		chart = new DavidCarsonChart[10][10];
+		chart = new DavidCarsonChart[6][6];
 		createChart();
 	}
 
@@ -21,21 +21,21 @@ public class CarsonBackend implements DavidSupport {
 		int i = 0;
 		for(int row = 0; row < chart.length; row++) {
 			for(int col = 0; col < chart[row].length; col++) {
-				chart[row][col] = new DavidCarsonChart(row, col, values[i]);
+				chart[row][col] = new DavidCarsonChart(row, col, values[i], false);
 				i++;
 			}
 		}
+		setBomb();
 	}
 	
-	public int[] createValues() {
-		int len = (int)Math.pow(chart.length, 2);
-		for(int i = 0; i < len / 2; i ++) {
+	public void createValues() {
+		int len = 36;
+		for(int i = 0; i < len/2; i++) {
 			values[i] = i;
 		}
-		for(int i = len / 2; i < len; i ++) {
-			values[i] = i;
+		for(int j = len/2; j < len; j++) {
+			values[j] = j - 18;
 		}
-		return values;
 	} 
 
 	public DavidCarsonChart[][] getChart() {
@@ -51,6 +51,11 @@ public class CarsonBackend implements DavidSupport {
 			input1 = CaveExplorer.in.nextLine();
 			coord1 = toCoords(input1);
 		}
+		if(chart[coord1[0]][coord1[1]].isHasBomb()) {
+			frontend.checkIfBomb(chart[coord1[0]][coord1[1]]);
+			
+		}
+		CaveExplorer.print("You found a " + chart[coord1[0]][coord1[1]].getValue());
 		CaveExplorer.print("Please enter the 2nd coordinate");
 		String input2 = CaveExplorer.in.nextLine();
 		int[] coord2 = toCoords(input2);
@@ -59,6 +64,11 @@ public class CarsonBackend implements DavidSupport {
 			input2 = CaveExplorer.in.nextLine();
 			coord2 = toCoords(input1);
 		}
+		if(chart[coord2[0]][coord2[1]].isHasBomb()) {
+			frontend.checkIfBomb(chart[coord2[0]][coord2[1]]);
+			
+		}
+		CaveExplorer.print("You found a " + chart[coord2[0]][coord2[1]].getValue());
 
 		if(input2 != null) {				
 			if(isValidInput(coord1, coord2)) {
@@ -91,6 +101,18 @@ public class CarsonBackend implements DavidSupport {
 			}
 		}catch(Exception e){
 			return null;
+		}
+	}
+	
+	public void setBomb() {
+		int rand = (int)(Math.random() * chart.length * chart.length / 2);
+		for(int row = 0; row < chart.length; row++) {
+			for(int col = 0; col < chart[row].length; col++) {
+				if(chart[row][col].getValue() == rand) {
+					chart[row][col].setHasBomb(true);
+				}
+				
+			}
 		}
 	}
 
