@@ -113,7 +113,6 @@ public class CarsonBackend implements DavidSupport {
 				if(chart[row][col].getValue() == rand) {
 					chart[row][col].setHasBomb(true);
 				}
-				
 			}
 		}
 	}
