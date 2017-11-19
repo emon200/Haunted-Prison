@@ -54,9 +54,14 @@ public class DavidFrontend implements CarsonSupport {
         	  System.out.println("Please pick your 2 coordinates to choose from!");
         	  int[][] coords = backend.getCoordInput();
         	  boolean match = backend.isMatch(coords[0], coords[1]);
+        	  if(match) {
+        		  addTries();
+        	  }else {
+        		  removeTries();
+        	  }
       			if(tries==0) 
       			{
-      			System.out.println("You failed to match up all the combinations...");
+      			System.out.println("You failed to match up all the combinations within the allotted amount of attempts!...");
       			playing = false;
       			}
       			else {
