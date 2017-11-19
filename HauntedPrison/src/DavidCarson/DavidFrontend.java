@@ -27,11 +27,11 @@ public class DavidFrontend implements CarsonSupport {
 	}
 
 	private void play() {
-		CaveExplorer.print("Are you ready to get started? If so, enter 'p' to begin or enter'r' to begin  ");
+		CaveExplorer.print("Are you ready to get started? If so, enter 'p' to begin or enter'r' for info  ");
 		String s = CaveExplorer.in.nextLine();
 		if(s.equalsIgnoreCase("r")){
-			CaveExplorer.print("In your display you will find a switchboard, with your tasks being to match up all the pairs of switches..."
-					+ "When matching up the combinations you will be allowed only 10 failures before the switchboard locks down and ultimately you will fail the task..."
+			CaveExplorer.print("In your display you will find a switchboard, with your tasks being to match up all the pairs of switches...\n"
+					+ "When matching up the combinations there will be a few features embedded that may speed your progess in matching the switches...\n"
 					+ "Good Luck...\n\n      - - press enter - -");
 			CaveExplorer.in.nextLine();
 			play();
@@ -50,11 +50,8 @@ public class DavidFrontend implements CarsonSupport {
 		playing = true;
           while(playing) {
         	  displayField(plots);
-      		  displayScoreStatus();
+      		  //displayScoreStatus();
         	  System.out.println("Please pick your 2 coordinates to choose from!");
-      			//int[] coords = backend.getCoordinates();
-      			//p = plots[coords[0]][coords[1]];
-      			//backend.reveal(p);
         	  int[][] coords = backend.getCoordInput();
         	  boolean match = backend.isMatch(coords[0], coords[1]);
       			if(tries==0) 
@@ -119,6 +116,7 @@ public class DavidFrontend implements CarsonSupport {
 		int south= p.getRow()+1;
 		if(p.isHasBomb()) {
 			CaveExplorer.print("You just triggered a bomb mechanic in the system!... \n All adjacent blocks at these directions gets matched!");
+			p.setMatched(true);
 			if(valid(r,east)) {
 				plots[r][east].setMatched(true);
 				matchOther(plots[r][east].getValue(),plots[r][east]);
