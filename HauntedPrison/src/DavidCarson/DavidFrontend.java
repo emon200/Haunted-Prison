@@ -31,6 +31,7 @@ public class DavidFrontend implements CarsonSupport {
 		String s = CaveExplorer.in.nextLine();
 		if(s.equalsIgnoreCase("r")){
 			CaveExplorer.print("In your display you will find a switchboard, with your tasks being to match up all the pairs of switches...\n"
+					+ "You will have 10 tries to get all the pairs matched up and for every pair matched, you get an extra attempt...\n"
 					+ "When matching up the combinations there will be a few features embedded that may speed your progess in matching the switches...\n"
 					+ "Good Luck...\n\n      - - press enter - -");
 			CaveExplorer.in.nextLine();
