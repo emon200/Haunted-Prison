@@ -7,10 +7,13 @@ public class AmanatNabeelPlot {
 	private boolean revealed;
 	private boolean isShip;
 	
-	public AmanatNabeelPlot(int row, int col) {
+	public AmanatNabeelPlot(int row, int col, boolean tell) {
 		revealed = false;
 		this.row = row;
 		this.col = col;
+		if(tell = true) {
+			
+		}
 	}
 
 	public int getRow() {

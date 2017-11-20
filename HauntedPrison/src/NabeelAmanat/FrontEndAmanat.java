@@ -152,7 +152,7 @@ public class FrontEndAmanat implements NabeelSupport{
 		}
 	}
 	public FrontEndAmanat() {
-		backend = new BackEndNabeelBattleShip(this);
+		backend = new BackEndNabeel(this);
 		newHint = null;
 	}
 	
