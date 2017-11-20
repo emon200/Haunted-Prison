@@ -22,7 +22,7 @@ public class FrontEndAmanat implements NabeelSupport{
 	}
 	
 	private void startGame() {
-		//AmanatNabeelPlot[][] plots = backend.getPlots();
+		//AmanatNabeelPlot[d][] plots = backend.getPlots();
 		playing = true;
 		while(playing) {
 		AmanatNabeelPlot[][] plots = backend.getPlots();

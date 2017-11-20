@@ -2,7 +2,7 @@ package NabeelAmanat;
 
 public class AmanatNabeelPlot {
 	
-	private int row;
+	private int row;//d
 	private int col;
 	private boolean revealed;
 	private boolean isShip;
