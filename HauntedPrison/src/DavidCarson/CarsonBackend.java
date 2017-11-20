@@ -50,6 +50,7 @@ public class CarsonBackend implements DavidSupport {
 			input1 = CaveExplorer.in.nextLine();
 			coord1 = toCoords(input1);
 		}
+		
 		if(chart[coord1[0]][coord1[1]].isHasBomb()) {
 			frontend.checkIfBomb(chart[coord1[0]][coord1[1]]);
 			
@@ -80,15 +81,14 @@ public class CarsonBackend implements DavidSupport {
 		return null;
 	}
 
-
 	private boolean isValidInput(int[] coord1, int[] coord2) {
-		if(coord1 != coord2) {
-			return true;
-		}
-		if(coord1[0] > chart.length || coord1[1] > chart.length || coord2[0] > chart.length || coord2[1] > chart.length) {
+		if(chart[coord1[0]][coord1[1]] == chart[coord2[0]][coord2[1]]) {
 			return false;
 		}
-		return false;
+		if(coord1[0] > 5 || coord1[1] > 5 || coord2[0] > 5 || coord2[1] > 5) {
+			return false;
+		}
+		return true;
 	}
 
 	private int[] toCoords(String input) {

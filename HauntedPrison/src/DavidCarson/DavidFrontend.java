@@ -121,7 +121,7 @@ public class DavidFrontend implements CarsonSupport {
 		int south= p.getRow()+1;
 		if(p.isHasBomb()) {
 			CaveExplorer.print("You just triggered a bomb mechanic in the system!... \n All adjacent blocks at these directions gets matched!");
-			//p.setMatched(true);
+			p.setMatched(true);
 			if(valid(r,east)) {
 				plots[r][east].setMatched(true);
 				matchOther(plots[r][east].getValue(),plots[r][east]);
@@ -142,6 +142,7 @@ public class DavidFrontend implements CarsonSupport {
 				 matchOther(plots[south][c].getValue(),plots[south][c]);
 				 CaveExplorer.print("south");
 				}
+			 
 		}
 		
 	}
@@ -156,6 +157,7 @@ public class DavidFrontend implements CarsonSupport {
 						plots[row][col].setMatched(true);
 					}
 				}
+				
 			}
 			
 		}
