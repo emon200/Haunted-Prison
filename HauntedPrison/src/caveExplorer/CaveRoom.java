@@ -1,6 +1,7 @@
 package caveExplorer;
 
 import NabeelAmanat.GaurdRoom;
+import NabeelAmanat.MiniGameStart;
 import NabeelAmanat.gambleAmanat;
 import DavidCarson.CarsonCave;
 import DavidCarson.DavidCave;
@@ -198,6 +199,7 @@ public class CaveRoom {
 		CaveRoom customRoom4 = new gambleAmanat("Room 0,2");
 		CaveRoom customRoom5 = new GaurdRoom("Room 2,1s"
 				+ "");
+		MiniGameStart customRoom6 = new MiniGameStart("This is where Amanats and Nabeels game is");
 
 		
 		CaveExplorer.caves[0][1] = customRoom;
@@ -205,6 +207,7 @@ public class CaveRoom {
 		CaveExplorer.caves[0][2] = customRoom4;
 		CaveExplorer.caves[2][1] = customRoom5;
 		CaveExplorer.caves[1][2] = customRoom2;
+		CaveExplorer.caves[2][2] = customRoom6;
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
@@ -218,6 +221,8 @@ public class CaveRoom {
 		c[0][1].setConnection(WEST, c[0][0], new Door());
 		c[0][1].setConnection(EAST, c[0][2], new Door());
 		c[1][1].setConnection(SOUTH, c[2][1], new Door());
+		c[2][1].setConnection(EAST, c[2][2], new Door());
+
 		/**
 		 * Special requests:
 		 * moving objects in caves
