@@ -136,14 +136,10 @@ public class BackEndNabeel implements AmanatSupport{
 	}
 
 	@Override
-	public String getValidUserInput() {
-		// TODO Auto-genedrated method stub
-		return null;
-	}
-
-	@Override
-	public void computerMove() {
-		// TODO Auto-generated method stub
-		
+	public boolean checkIfInputValid(int x) {
+		boolean amanat = false;
+		if(x < 7 && x>-1) 
+			amanat =true;
+		return amanat;
 	}
 }

@@ -1,5 +1,7 @@
 package NabeelAmanat;
 
+import java.util.Scanner;
+
 import caveExplorer.CaveExplorer;
 
 public class FrontEndAmanat implements NabeelSupport{
@@ -17,38 +19,15 @@ public class FrontEndAmanat implements NabeelSupport{
 	private int computerScore;
 	
 	public static final void main(String[] args) {
+		
 		FrontEndAmanat demo = new FrontEndAmanat();
 		demo.startGame();
 	}
 	
+	
 	private void startGame() {
-		//AmanatNabeelPlot[d][] plots = backend.getPlots();
-		playing = true;
-		while(playing) {
-		AmanatNabeelPlot[][] plots = backend.getPlots();
-		//AmanatNabeelPlot[][] plots = new AmanatNabeelPlot[6][6];
-		//for(int i=0;i<plots.length;i++) {
-			//for(int x =0; x<plots[i].length;x++) {
-				
-			//}
-		//}
-		ships = 15;
-		chips = 15;
-		setUp();
-		while(ships >0 && chips>0) {
-			displayAIBoard(plots);
-			System.out.println("\n|--------|\n");
-			displayBoard(plots);
-			updateScore();
-			displayScore();
-			//time();
-			//turnCount();
-	        String input = backend.getValidUserInput();
-	        respondToInput(input);
-	        backend.computerMove();
-	        updateScore();
-		}
-	}
+		promptUser("Welcome to Battleship!" + "\n")
+		backend.setFirst
 	}
 	
 	private void updateScore() {
@@ -123,27 +102,6 @@ public class FrontEndAmanat implements NabeelSupport{
 		System.out.println("Computer Score:" + computerScore);
 	}
 	
-	private void analyzeBoard() {
-		
-	}
-	
-	private void setUp() {
-		
-	}
-	
-//	public void turnCount() {
-//		boolean onTurn = true;
-//		while(onTurn==true) {
-//		turn++;
-//		System.out.println(turn);
-//		onTurn=false;
-//		}
-//	}
-	
-//	public void time() {
-//		counter = (long) System.nanoTime();
-//		System.out.print(counter);
-//	}
 	public void cheatCode() {
 		String s = CaveExplorer.in.nextLine();
 		if(s.equalsIgnoreCase(cheatcode)) {
@@ -158,14 +116,23 @@ public class FrontEndAmanat implements NabeelSupport{
 
 	@Override
 	public void promptUser(String question) {
-		// TODO Auto-generated method stub
-		
+		System.out.println(question);
 	}
 
 	@Override
 	public int[] getInput() {
-		// TODO Auto-generated method stub
-		return null;
+		int loop =0;
+		int[] info = new int[1];
+		while (loop ==0){
+		Scanner in = new Scanner(System.in);
+		String input = in.nextLine();
+		int x = Integer.parseInt(input);
+		if(backend.checkIfInputValid(x)) {
+			info[0] = x;
+			return info;
+		}
+		promptUser("That doesnt work please select a value that is in the graph.");
+		}
+		return info;
 	}
-	
 }

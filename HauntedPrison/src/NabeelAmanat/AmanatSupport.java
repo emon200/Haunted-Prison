@@ -4,8 +4,6 @@ public interface AmanatSupport {
 
 	AmanatNabeelPlot[][] getPlots();
 
-	String getValidUserInput();
-
-	void computerMove();
+	boolean checkIfInputValid(int x);
 
 }
