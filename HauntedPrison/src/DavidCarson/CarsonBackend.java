@@ -45,11 +45,12 @@ public class CarsonBackend implements DavidSupport {
 		CaveExplorer.print("Please enter the 1st coordinate");
 		String input1 = CaveExplorer.in.nextLine();
 		int[] coord1 = toCoords(input1);
-		while(coord1 == null) {
+		while(coord1 == null || !isValidInput(coord1)) {
 			CaveExplorer.print("Invalid entry, try again");
 			input1 = CaveExplorer.in.nextLine();
 			coord1 = toCoords(input1);
 		}
+		
 		if(chart[coord1[0]][coord1[1]].isHasBomb()) {
 			frontend.checkIfBomb(chart[coord1[0]][coord1[1]]);
 			
@@ -58,7 +59,7 @@ public class CarsonBackend implements DavidSupport {
 		CaveExplorer.print("Please enter the 2nd coordinate");
 		String input2 = CaveExplorer.in.nextLine();
 		int[] coord2 = toCoords(input2);
-		while(coord2 == null) {
+		while(coord2 == null || !isValidInput(coord2)) {
 			CaveExplorer.print("Invalid entry, try again");
 			input2 = CaveExplorer.in.nextLine();
 			coord2 = toCoords(input1);
@@ -79,16 +80,22 @@ public class CarsonBackend implements DavidSupport {
 		}
 		return null;
 	}
-
-
-	private boolean isValidInput(int[] coord1, int[] coord2) {
-		if(coord1 != coord2) {
-			return true;
-		}
-		if(coord1[0] > chart.length || coord1[1] > chart.length || coord2[0] > chart.length || coord2[1] > chart.length) {
+	
+	private boolean isValidInput(int[] coord1) {
+		if(coord1[0] > 5 || coord1[1] > 5) {
 			return false;
 		}
-		return false;
+		return true;
+	}
+
+	private boolean isValidInput(int[] coord1, int[] coord2) {
+		if(chart[coord1[0]][coord1[1]] == chart[coord2[0]][coord2[1]]) {
+			return false;
+		}
+		if(coord1[0] > 5 || coord1[1] > 5 || coord2[0] > 5 || coord2[1] > 5) {
+			return false;
+		}
+		return true;
 	}
 
 	private int[] toCoords(String input) {
@@ -153,10 +160,14 @@ public class CarsonBackend implements DavidSupport {
 			chart[coord1[0]][coord1[1]].setMatched(true);
 			chart[coord2[0]][coord2[1]].setMatched(true);
 			CaveExplorer.print("This was a match");
+			addTries();
 			return true;
 		}
 		CaveExplorer.print("No match");
+		removeTries();
 		return false;
 	}
+
+
 
 }

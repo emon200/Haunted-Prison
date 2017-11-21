@@ -21,4 +21,5 @@ public interface DavidSupport {
 	int[][] getCoordInput();
 
 	boolean isMatch(int[] coords, int[] coords2);
+
 }
