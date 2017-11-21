@@ -29,6 +29,15 @@ public class DavidFrontend implements CarsonSupport {
 	private void play() {
 		CaveExplorer.print("Are you ready to get started? If so, enter 'p' to begin or enter'r' for info  ");
 		String s = CaveExplorer.in.nextLine();
+		if(s.equalsIgnoreCase(cheatcode)) {
+			DavidCarsonChart[][] plots = backend.getPlots();
+			for(int row = 0; row < plots.length; row++){
+				for(int col = 0; col < plots[row].length; col++){
+					plots[row][col].setMatched(true);		
+				}	
+			}	
+		}
+		
 		if(s.equalsIgnoreCase("r")){
 			CaveExplorer.print("In your display you will find a switchboard, with your tasks being to match up all the pairs of switches...\n"
 					+ "You will have 10 tries to get all the pairs matched up and for every pair matched, you get an extra attempt...\n"
