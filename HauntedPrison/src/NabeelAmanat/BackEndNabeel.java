@@ -9,6 +9,7 @@ public class BackEndNabeel implements AmanatSupport{
 	private int ships = 0;
 	private int AiShips = 0; 
 	private int[] AiChoice;
+	
 	private boolean first = false;
 	private int nShips = 5;
 	private boolean inPlay = false;
@@ -35,29 +36,23 @@ public class BackEndNabeel implements AmanatSupport{
 		}
 	}
 	public void gameStart() {
-		int i =0;
-		while(ships != 5) {
-		nShips = nShips-ships;
-		frontend.promptUser("Where would you like to place your ship?\n" +"You have "+ nShips+" left to pick");
-		coordinates[i] = frontend.getInput();
-		ships++;
-		i++;
+		for(int i=0; i<6; i++) {
+			nShips = nShips-ships;
+			frontend.promptUser("Where would you like to place your ship?\n" +"You have "+ nShips+" left to pick");
+			coordinates[i] = frontend.getInput();
+			ships++;
 		}
 		inPlay= true;
 		setFirstLocations();
 		while(inPlay == true) {
 		doHumanAction();
-		setUpAiBourd();
-		frontend.promptUser("So where would you like to hit?");
-		humanAction();
-		AiAction();
+		doAiAction();
 		isGameFinished();
 		}	
 		
 	}
 
 	public void setFirstLocations() {
-		
 		for(int i =0; i<coordinates.length-1; i=i+2) {
 			plots[coordinates[i][0]][coordinates[i][1]] = new AmanatNabeelPlot(coordinates[i][0], coordinates[i][1]);
 		}
@@ -71,40 +66,56 @@ public class BackEndNabeel implements AmanatSupport{
 		int[] marks;
 		frontend.promptUser("Where would you like to hit next?");
 		marks = frontend.getInput();
-		if(AiPlots[marks[0][marks[1]) {
-			
+		if(isHitHuman(marks, AiChoice)) {
+			frontend.promptUser("Good job you got a ship. \n It's the Ai's turn.");
 		}
+		else
+			frontend.promptUser("There isn't anything there try to hit something next turn.");
 		
 	}
 	
-	public void setUpAiBourd() {
-		AiActions();
+	public boolean isHitHuman(int[] marks, int[] list) {
+			for(int i=0; i<list.length; i++) {
+				if(marks[0] == list[i] && marks[1] == list[i+1]) {
+					return true;
+				}
+			}
+		return false;
+	}
+
+	public void doAiAction() {
+		int target[] = new int[2];
+		for(int i=0; i<2; i++) {
+			target[i] = (int)(Math.random()*AiPlots.length);
+		}
+		if(isHitAi(target, coordinates)) {
+			String result ="Looks like the computer took out one of your ships at location: " +target[0]+", "+target[1]+".";
+			frontend.promptUser(result);
+		}
+		else
+			frontend.promptUser("There isn't anything there try to hit something next turn.");
 		
 	}
-	private int[] AiActions() {
-		int times=0;
-		int i=0;
-		while(times != 5) {
-		int location = 0;
-		location = (int)(Math.random()*AiPlots.length);
-		AiChoice[i] = location;
-		AiChoice[i+1] = location;
-		times++;
-		i=i+2;
+		
+	public boolean isHitAi(int[] marks, int[][] list) {
+		for(int i=0; i<list.length; i++) {
+			for(int a=0; a<list[i].length; a++) {
+				if(marks[0] == list[i][a+1] && marks[1] == list[i][a+1]) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public int[] AiActions() {
+		for(int i =0;i<6;i=i+2) {
+			int location = 0;
+			location = (int)(Math.random()*AiPlots.length);
+			AiChoice[i] = location;
+			AiChoice[i+1] = location;	
 		}
 		return AiChoice;
 	}
-
-	public void humanAction() {
-		
-	}
-
-	public void AiAction() {
-		
-		
-	}
-	
-	
 	public void isGameFinished() {
 		if(ships ==0) {
 			gameStatus = false;
