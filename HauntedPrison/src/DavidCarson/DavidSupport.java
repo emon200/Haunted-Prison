@@ -22,4 +22,8 @@ public interface DavidSupport {
 
 	boolean isMatch(int[] coords, int[] coords2);
 
+	boolean isValidInput(int[] is, int[] is2);
+
+
+
 }

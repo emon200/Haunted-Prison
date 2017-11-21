@@ -5,6 +5,7 @@ import NabeelAmanat.MiniGameStart;
 import NabeelAmanat.gambleAmanat;
 import DavidCarson.CarsonCave;
 import DavidCarson.DavidCave;
+import DavidCarson.minigameStart2;
 
 public class CaveRoom {
 
@@ -200,6 +201,7 @@ public class CaveRoom {
 		CaveRoom customRoom5 = new GaurdRoom("Room 2,1s"
 				+ "");
 		MiniGameStart customRoom6 = new MiniGameStart("This is where Amanats and Nabeels game is");
+		minigameStart2 customRoom7 = new minigameStart2("Memory Game");
 
 		
 		CaveExplorer.caves[0][1] = customRoom;
@@ -208,7 +210,7 @@ public class CaveRoom {
 		CaveExplorer.caves[2][1] = customRoom5;
 		CaveExplorer.caves[1][2] = customRoom2;
 		CaveExplorer.caves[2][2] = customRoom6;
-		
+		CaveExplorer.caves[2][0] = customRoom7;		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
@@ -222,6 +224,7 @@ public class CaveRoom {
 		c[0][1].setConnection(EAST, c[0][2], new Door());
 		c[1][1].setConnection(SOUTH, c[2][1], new Door());
 		c[2][1].setConnection(EAST, c[2][2], new Door());
+		c[2][1].setConnection(WEST, c[2][0], new Door());
 
 		/**
 		 * Special requests:

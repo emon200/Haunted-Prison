@@ -88,7 +88,7 @@ public class CarsonBackend implements DavidSupport {
 		return true;
 	}
 
-	private boolean isValidInput(int[] coord1, int[] coord2) {
+	public boolean isValidInput(int[] coord1, int[] coord2) {
 		if(chart[coord1[0]][coord1[1]] == chart[coord2[0]][coord2[1]]) {
 			return false;
 		}
@@ -154,19 +154,20 @@ public class CarsonBackend implements DavidSupport {
 		return chart;
 	}
 
-	@Override
 	public boolean isMatch(int[] coord1, int[] coord2) {
 		if(chart[coord1[0]][coord1[1]].getValue() == chart[coord2[0]][coord2[1]].getValue()) {
 			chart[coord1[0]][coord1[1]].setMatched(true);
 			chart[coord2[0]][coord2[1]].setMatched(true);
 			CaveExplorer.print("This was a match");
-			addTries();
+			frontend.addTries();
 			return true;
 		}
 		CaveExplorer.print("No match");
-		removeTries();
+		frontend.removeTries();
 		return false;
 	}
+
+
 
 
 

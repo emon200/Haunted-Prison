@@ -8,7 +8,7 @@ import caveExplorer.CaveExplorer;
 public class DavidFrontend implements CarsonSupport {
 
 	private DavidSupport backend;
-	private int tries;
+	public int tries;
 	private String cheatcode;
 	private boolean playing;
 	private boolean chatting; 
@@ -54,6 +54,9 @@ public class DavidFrontend implements CarsonSupport {
       		  displayScoreStatus();
         	  System.out.println("Please pick your 2 coordinates to choose from!");
         	  int[][] coords = backend.getCoordInput();
+        	  if(coords != null) {
+        		  boolean match = backend.isMatch(coords[0], coords[1]);
+        	  }
         	  //boolean match = backend.isMatch(coords[0], coords[1]);
         	  
       			if(tries==0) 
@@ -71,7 +74,8 @@ public class DavidFrontend implements CarsonSupport {
           }
       		
         	  
-          }
+          }	
+
 
 	private boolean playerWin(DavidCarsonChart[][] plots) {
 		for(int row = 0; row < plots.length; row++){
