@@ -7,7 +7,7 @@ public class Inventory {
 	private int hp;
 	
 	public Inventory() {
-		updateMap();
+	
 	}
 	public int getHp() {
 		return hp;

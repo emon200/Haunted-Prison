@@ -7,7 +7,7 @@ public class CaveExplorer {
 	public static CaveRoom[][] caves;//every room in the cave
 	public static Scanner in;//for user input
 	public static CaveRoom currentRoom;//changes based on how the user navigated
-	public static Inventory inventory;//where all objects found in cave are kept
+	public static Inventory inventory = new Inventory();//where all objects found in cave are kept
 	public static boolean playing = true;
 	public static NPC[] npcs;
 	
@@ -15,8 +15,9 @@ public class CaveExplorer {
 		in = new Scanner(System.in);
 		CaveRoom.setUpCaves();
 		
-		inventory = new Inventory();
+	
 		inventory.setHp(10);
+		inventory.updateMap();
 		startExploring();
 	}
 

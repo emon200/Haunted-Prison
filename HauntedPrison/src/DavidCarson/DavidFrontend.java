@@ -14,7 +14,7 @@ public class DavidFrontend implements CarsonSupport {
 	private boolean chatting; 
 	public DavidFrontend() {
 		backend = new CarsonBackend(this);
-		tries = 10;
+		tries = 5;
 		cheatcode = "pineapples";
 	}
 
@@ -27,7 +27,7 @@ public class DavidFrontend implements CarsonSupport {
 	}
 
 	private void play() {
-		CaveExplorer.print("Are you ready to get started? If so, enter 'p' to begin or enter'r' for info  ");
+		new Intro().play();
 		String s = CaveExplorer.in.nextLine();
 		if(s.equalsIgnoreCase(cheatcode)) {
 			DavidCarsonChart[][] plots = backend.getPlots();
@@ -40,7 +40,7 @@ public class DavidFrontend implements CarsonSupport {
 		
 		if(s.equalsIgnoreCase("r")){
 			CaveExplorer.print("In your display you will find a switchboard, with your tasks being to match up all the pairs of switches...\n"
-					+ "You will have 10 tries to get all the pairs matched up and for every pair matched, you get an extra attempt...\n"
+					+ "You will have 5 tries to get all the pairs matched up and for every pair matched, you get an extra attempt...\n"
 					+ "When matching up the combinations there will be a few features embedded that may speed your progess in matching the switches...\n"
 					+ "Good Luck...\n\n      - - press enter - -");
 			CaveExplorer.in.nextLine();
@@ -70,7 +70,10 @@ public class DavidFrontend implements CarsonSupport {
         	  
       			if(tries==0) 
       			{
-      			System.out.println("You failed to match up all the combinations within the allotted amount of attempts!...");
+      			System.out.println("You failed to match up all the combinations within the allotted amount of attempts!...\n You lose 10 HP...");
+      			int currentHp = CaveExplorer.inventory.getHp();
+      			System.out.println(currentHp);
+      			CaveExplorer.inventory.setHp(currentHp-10);
       			playing = false;
       			}
       			else {
