@@ -11,10 +11,11 @@ public class DavidFrontend implements CarsonSupport {
 	public int tries;
 	private String cheatcode;
 	private boolean playing;
-	private boolean chatting; 
+	private boolean chatting;
+	public static boolean hasWon = false;
 	public DavidFrontend() {
 		backend = new CarsonBackend(this);
-		tries = 5;
+		tries = 10;
 		cheatcode = "pineapples";
 	}
 
@@ -40,7 +41,7 @@ public class DavidFrontend implements CarsonSupport {
 		
 		if(s.equalsIgnoreCase("r")){
 			CaveExplorer.print("In your display you will find a switchboard, with your tasks being to match up all the pairs of switches...\n"
-					+ "You will have 5 tries to get all the pairs matched up and for every pair matched, you get an extra attempt...\n"
+					+ "You will have 10 tries to get all the pairs matched up and for every pair matched, you get an extra attempt...\n"
 					+ "When matching up the combinations there will be a few features embedded that may speed your progess in matching the switches...\n"
 					+ "Good Luck...\n\n      - - press enter - -");
 			CaveExplorer.in.nextLine();
@@ -72,13 +73,13 @@ public class DavidFrontend implements CarsonSupport {
       			{
       			System.out.println("You failed to match up all the combinations within the allotted amount of attempts!...\n You lose 10 HP...");
       			int currentHp = CaveExplorer.inventory.getHp();
-      			System.out.println(currentHp);
       			CaveExplorer.inventory.setHp(currentHp-10);
       			playing = false;
       			}
       			else {
       				if(playerWin(plots)) {
       					System.out.println("You have matched up all the the switches and have done so in within the limited amount of tries you've been given.");
+      					hasWon = true;
       					playing = false;
       				}
       			}
@@ -108,20 +109,20 @@ public class DavidFrontend implements CarsonSupport {
 	
 	private void displayField(DavidCarsonChart[][] plots) {
 		String rows = "0123456789";
-		String columns = "  0123456789";
+		String columns = "  0  1  2  3  4  5  6789";
 		for(int row = 0; row < plots.length; row++){
-			System.out.print(rows.substring(row, row+1)+" ");
+			System.out.print(rows.substring(row, row+1));
 			for(int col = 0; col < plots[row].length; col++){
 					if(plots[row][col].isMatched()){
-						System.out.print(plots[row][col].getValue());
+						System.out.print(" " + plots[row][col].getValue() + " ");
 					}else{
-						System.out.print("-");
+						System.out.print(" - ");
 					}
 
 			}
 			System.out.println(" " + rows.substring(row, row+1));
 		}
-		System.out.println(columns.substring(0, plots[0].length+2));
+		System.out.println(columns.substring(0, plots[0].length+14));
 	}
 	
 	public void checkIfBomb(DavidCarsonChart p) {
@@ -185,6 +186,10 @@ public class DavidFrontend implements CarsonSupport {
 	}
 	public void addTries() {
 		tries++;
+	}
+	
+	public static boolean getHasWon() {
+		return hasWon;
 	}
 	
 }
