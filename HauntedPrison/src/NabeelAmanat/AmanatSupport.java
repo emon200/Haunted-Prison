@@ -6,4 +6,6 @@ public interface AmanatSupport {
 
 	boolean checkIfInputValid(int x);
 
+	AmanatNabeelPlot[][] getAIPlots();
+
 }

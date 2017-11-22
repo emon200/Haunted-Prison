@@ -26,8 +26,10 @@ public class FrontEndAmanat implements NabeelSupport{
 	
 	
 	private void startGame() {
-		promptUser("Welcome to Battleship!" + "\n")
-		backend.setFirst
+		((BackEndNabeel)backend).gameStart();
+		promptUser("Welcome to Battleship!" + "\n");
+		displayAIBoard(backend.getAIPlots());
+		displayBoard(backend.getPlots());
 	}
 	
 	private void updateScore() {
@@ -122,16 +124,27 @@ public class FrontEndAmanat implements NabeelSupport{
 	@Override
 	public int[] getInput() {
 		int loop =0;
-		int[] info = new int[1];
+		int[] info = new int[2];
 		while (loop ==0){
 		Scanner in = new Scanner(System.in);
 		String input = in.nextLine();
-		int x = Integer.parseInt(input);
-		if(backend.checkIfInputValid(x)) {
+		try{
+			Integer.parseInt(input.substring(0,1));
+			Integer.parseInt(input.substring(2,3));
+			}
+		catch(NumberFormatException ex) {
+			promptUser("This is not a valid input use format: x,y \n x and y must be numbers.");
+			getInput();
+		}
+		int x = Integer.parseInt(input.substring(0,1));
+		int y = Integer.parseInt(input.substring(2,3));
+		if(backend.checkIfInputValid(x) && backend.checkIfInputValid(y)) {
 			info[0] = x;
+			info[1] = y;
+			in.close();
 			return info;
 		}
-		promptUser("That doesnt work please select a value that is in the graph.");
+		promptUser("That doesnt work please select a value that is in the graph and put it in format: x,y");
 		}
 		return info;
 	}

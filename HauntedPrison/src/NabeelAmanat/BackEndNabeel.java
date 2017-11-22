@@ -27,6 +27,7 @@ public class BackEndNabeel implements AmanatSupport{
 		for(int row = 0; row < plots.length; row++){
 			for(int col = 0; col < plots[row].length; col++){
 				plots[row][col] = new AmanatNabeelPlot(row, col);
+				plots[row][col].reveal();
 			}
 		}
 		for(int row = 0; row < AiPlots.length; row++){
@@ -38,7 +39,7 @@ public class BackEndNabeel implements AmanatSupport{
 	public void gameStart() {
 		for(int i=0; i<6; i++) {
 			nShips = nShips-ships;
-			frontend.promptUser("Where would you like to place your ship?\n" +"You have "+ nShips+" left to pick");
+			frontend.promptUser("Where would you like to place your ship?\n" +"You have "+ nShips+" left to pick"+". Put it in this format: x-coordinate, y-coordinate.");
 			coordinates[i] = frontend.getInput();
 			ships++;
 		}
@@ -131,8 +132,11 @@ public class BackEndNabeel implements AmanatSupport{
 
 	@Override
 	public AmanatNabeelPlot[][] getPlots() {
-		// TODO Auto-generated method stub
 		return plots;
+	}
+	
+	public AmanatNabeelPlot[][] getAIPlots() {
+		return AiPlots;
 	}
 
 	@Override
