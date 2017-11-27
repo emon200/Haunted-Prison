@@ -1,14 +1,10 @@
 package NabeelAmanat;
 
-import java.util.Scanner;
-
 import caveExplorer.CaveExplorer;
 
 public class FrontEndAmanat implements NabeelSupport{
 	private AmanatSupport backend;
 	private String newHint;
-	private int ships;
-	private int chips;
 	private int turn;
 	private String cheatcode = "Titanic";
 	private long counter;
@@ -52,9 +48,8 @@ public class FrontEndAmanat implements NabeelSupport{
 					if(plots[row][col].isShip()){
 						System.out.print("☠");
 						isHit = true;
-						displayScore();
+						updateScore();
 						isHit=false;
-						ships--;
 					}else{
 						System.out.print(" ");	
 					}
@@ -79,9 +74,8 @@ public class FrontEndAmanat implements NabeelSupport{
 					if(plots[row][col].isAIShip()){
 						System.out.print("☠");
 						isCHit = true;
-						displayScore();
+						updateScore();
 						isCHit=false;
-						chips--;
 					}else{
 						System.out.print(" ");	
 					}
@@ -96,7 +90,7 @@ public class FrontEndAmanat implements NabeelSupport{
 	
 	}
 
-	private void displayScore() {
+	public void displayScore() {
 		System.out.println("Player Score:" + playerScore);
 		System.out.println("Computer Score:" + computerScore);
 	}

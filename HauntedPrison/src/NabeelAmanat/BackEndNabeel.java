@@ -48,13 +48,16 @@ public class BackEndNabeel implements AmanatSupport{
 			String input = CaveExplorer.in.nextLine();
 			coordinates[i] = getInput(input);
 			ships++;
+			setFirstLocations();
+			frontend.displayAIBoard(plots);
+			frontend.displayBoard(plots);
 		}
 		ships =5;
 		inPlay= true;
-		setFirstLocations();
 		while(inPlay == true) {
 		frontend.displayAIBoard(plots);
 		frontend.displayBoard(plots);
+		frontend.displayScore();
 		doHumanAction();
 		doAiAction();
 		isGameFinished();
