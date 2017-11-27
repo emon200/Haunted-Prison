@@ -42,7 +42,7 @@ public class CaveExplorer {
 
 
 	public static void print(String s) {
-		//NOTE: later, you can replace this line with the more sophistocated "multiLinePrint" from Chatbot
+		//NOTE: later, you can replace this line with the more sophistocated "multiLinePrint" from Chatbott
 		System.out.println(s);
 	}
 
