@@ -201,7 +201,7 @@ public class CaveRoom {
 		CaveRoom customRoom5 = new GaurdRoom("Room 2,1s"
 				+ "");
 		MiniGameStart customRoom6 = new MiniGameStart("This is where Amanats and Nabeels game is");
-		minigameStart2 customRoom7 = new minigameStart2("Memory Matching Game");
+		minigameStart2 customRoom7 = new minigameStart2("Memory Matching Game...");
 		CaveRoom customRoom8 = new EscapeRoom("...");
 
 		
