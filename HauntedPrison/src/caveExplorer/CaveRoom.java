@@ -201,18 +201,18 @@ public class CaveRoom {
 		CaveRoom customRoom5 = new GaurdRoom("Room 2,1s"
 				+ "");
 		MiniGameStart customRoom6 = new MiniGameStart("This is where Amanats and Nabeels game is");
-		minigameStart2 customRoom7 = new minigameStart2("Memory Game");
+		minigameStart2 customRoom7 = new minigameStart2("Memory Matching Game");
 		CaveRoom customRoom8 = new EscapeRoom("...");
 
 		
 		CaveExplorer.caves[0][1] = customRoom;
 		CaveExplorer.caves[0][0] = customRoom3;
-		CaveExplorer.caves[0][2] = customRoom4;
+		CaveExplorer.caves[0][4] = customRoom4;
 		CaveExplorer.caves[2][1] = customRoom5;
 		CaveExplorer.caves[1][2] = customRoom2;
 		CaveExplorer.caves[2][2] = customRoom6;
 		CaveExplorer.caves[2][0] = customRoom7;		
-		CaveExplorer.caves[0][3] = customRoom8;
+		CaveExplorer.caves[4][4] = customRoom8;
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
@@ -229,7 +229,10 @@ public class CaveRoom {
 		c[2][1].setConnection(WEST, c[2][0], new Door());
 		c[2][2].setConnection(EAST, c[2][3], new Door());
 		c[0][2].setConnection(EAST, c[0][3],new Door());
-
+		c[2][3].setConnection(SOUTH, c[3][3],new Door());
+		c[3][3].setConnection(SOUTH, c[4][3],new Door());
+		c[4][3].setConnection(EAST, c[4][4],new Door());
+		c[0][3].setConnection(EAST, c[0][4], new Door());
 		/**
 		 * Special requests:
 		 * moving objects in caves
