@@ -12,7 +12,7 @@ public class minigameStart2 extends CaveRoom {
 	public minigameStart2(String description) {
 		super(description);
 		this.activeDescription = "This is the memory game";
-		this.inactiveDescription = "You have already beat the memory game";
+		this.inactiveDescription = "This is where you played the memory matching game...";
 	}
 	public void enter() {
 		super.enter();
