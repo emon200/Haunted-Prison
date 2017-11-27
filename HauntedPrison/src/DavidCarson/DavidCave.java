@@ -57,7 +57,7 @@ public class DavidCave extends CaveRoom {
 			while(chatting) {
 				int x = Integer.parseInt(s);
 				if(checkNumber(s)) {
-					System.out.println(rand);
+					//System.out.println(rand);
 					if(x>rand) {
 						CaveExplorer.print("Too high");
 						if(x<max) {
