@@ -8,4 +8,6 @@ public interface AmanatSupport {
 
 	AmanatNabeelPlot[][] getAIPlots();
 
+	void gameStart();
+
 }

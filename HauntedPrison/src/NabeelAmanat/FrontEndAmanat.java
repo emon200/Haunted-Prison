@@ -21,15 +21,17 @@ public class FrontEndAmanat implements NabeelSupport{
 	public static final void main(String[] args) {
 		
 		FrontEndAmanat demo = new FrontEndAmanat();
+		CaveExplorer.initScanner();
 		demo.startGame();
 	}
 	
 	
-	private void startGame() {
-		((BackEndNabeel)backend).gameStart();
+	public void startGame() {
 		promptUser("Welcome to Battleship!" + "\n");
 		displayAIBoard(backend.getAIPlots());
 		displayBoard(backend.getPlots());
+		((BackEndNabeel)backend).gameStart();
+		
 	}
 	
 	private void updateScore() {
@@ -40,12 +42,7 @@ public class FrontEndAmanat implements NabeelSupport{
 			computerScore++;
 		}
 	}
-
-	private void respondToInput(String input) {
-		
-	}
-
-	private void displayBoard(AmanatNabeelPlot[][] plots) {
+	public void displayBoard(AmanatNabeelPlot[][] plots) {
 		String rows = "0123456789";
 		String columns = "  0123456789";
 		for(int row = 0; row < plots.length; row++){
@@ -72,14 +69,14 @@ public class FrontEndAmanat implements NabeelSupport{
 	
 	}
 	
-		private void displayAIBoard(AmanatNabeelPlot[][] plots) {
+		public void displayAIBoard(AmanatNabeelPlot[][] plots) {
 		String rows = "0123456789";
 		String columns = "  0123456789";
 		for(int row = 0; row < plots.length; row++){
 			System.out.print(rows.substring(row, row+1)+" ");
 			for(int col = 0; col < plots[row].length; col++){
-				if(plots[row][col].isRevealed()){
-					if(plots[row][col].isShip()){
+				if(plots[row][col].isAIRevealed()){
+					if(plots[row][col].isAIShip()){
 						System.out.print("☠");
 						isCHit = true;
 						displayScore();
@@ -119,33 +116,5 @@ public class FrontEndAmanat implements NabeelSupport{
 	@Override
 	public void promptUser(String question) {
 		System.out.println(question);
-	}
-
-	@Override
-	public int[] getInput() {
-		int loop =0;
-		int[] info = new int[2];
-		while (loop ==0){
-		Scanner in = new Scanner(System.in);
-		String input = in.nextLine();
-		try{
-			Integer.parseInt(input.substring(0,1));
-			Integer.parseInt(input.substring(2,3));
-			}
-		catch(NumberFormatException ex) {
-			promptUser("This is not a valid input use format: x,y \n x and y must be numbers.");
-			getInput();
-		}
-		int x = Integer.parseInt(input.substring(0,1));
-		int y = Integer.parseInt(input.substring(2,3));
-		if(backend.checkIfInputValid(x) && backend.checkIfInputValid(y)) {
-			info[0] = x;
-			info[1] = y;
-			in.close();
-			return info;
-		}
-		promptUser("That doesnt work please select a value that is in the graph and put it in format: x,y");
-		}
-		return info;
 	}
 }

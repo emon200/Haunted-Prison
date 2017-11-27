@@ -12,14 +12,15 @@ public class CaveExplorer {
 	public static NPC[] npcs;
 	
 	public static void main(String[] args) {
-		in = new Scanner(System.in);
+		initScanner();
 		CaveRoom.setUpCaves();
-		
 		inventory = new Inventory();
 		inventory.setHp(10);
 		startExploring();
 	}
-
+	public static void initScanner(){
+		in = new Scanner(System.in);
+	}
 
 	private static void startExploring() {
 		while(playing) {
