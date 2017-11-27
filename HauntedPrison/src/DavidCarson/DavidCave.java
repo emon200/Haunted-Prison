@@ -11,6 +11,10 @@ public class DavidCave extends CaveRoom {
 	private String inactiveDescription;
 	private int check;
 	private boolean chatting;
+	int min =0;
+	int max = 999;
+	private String [] numbers = {"0","1","2","3","4","5","6","7","8","9"};
+	int rand = (int) (Math.random()*999);
 	public DavidCave(String description) {
 		super(description);
 		this.activeDescription = "On the corner you see the med-bay where prisoners would be brought for treatment after their usual scuffles...";
@@ -42,30 +46,54 @@ public class DavidCave extends CaveRoom {
 	}
 	
 	private void interact() {
-			CaveExplorer.print("Inside the room, you notice a spare med-kit lying on the ground... It would be a waste not to use it...  ");
+			CaveExplorer.print("Inside the room, you notice a spare med-kit locked inside a small safe. The safe is a 3 digit lock. Won't hurt to try and guess the combination ");
 			String s = CaveExplorer.in.nextLine();
-			chatting = true;
-			check = 0;
+			while(!checkNumber(s)) {
+				CaveExplorer.print("Invalid Input!!!!");
+				s= CaveExplorer.in.nextLine();
+			}
+				chatting = true;
+				check = 0;
 			while(chatting) {
-				if(!s.equalsIgnoreCase("e")) {
-				CaveExplorer.print("You tried to do something but fumbled");
-				s = CaveExplorer.in.nextLine();
-				check++;
-				}
-				if(check >3) {
-				  CaveExplorer.print("You took too long to do something! Zombies have come and chased you out!");
+				int x = Integer.parseInt(s);
+				if(checkNumber(s)) {
+					//System.out.println(rand);
+					if(x>rand) {
+						CaveExplorer.print("Too high");
+						if(x<max) {
+							setMax(x);
+						}
+						CaveExplorer.print("The safe code is between "+min+" and "+max);
+						check++;
+						s = CaveExplorer.in.nextLine();
+					}else {
+						if(x<rand) {
+						CaveExplorer.print("Too low");
+						if(x>min) {
+							setMin(x);
+						}
+						CaveExplorer.print("The safe code is between "+min+" and "+max);
+						check++;
+						s = CaveExplorer.in.nextLine();
+						}
+						else {
+							if(x==rand) {
+							CaveExplorer.print("You hear a click and the safe cracks open...");
+							CaveExplorer.print("You bandaged your wounds with the med kit and feel much better...");
+						    CaveExplorer.inventory.setHp(100);
+						    visited = true;
+						    chatting = false;
+							}
+						}
+					}
+					}
+				if(check >10) {
+				  CaveExplorer.print("You hear beeping and notice the lock has enter a fail-safe mode. Guess it won't take anymore entries.");
 				  visited = true;
 				  chatting = false;
 				  
 				}
-				else {
-					if(s.equalsIgnoreCase("e")) {
-					CaveExplorer.print("You bandaged your wounds with the med kit and feel much better...");
-				    CaveExplorer.inventory.setHp(100);
-				    visited = true;
-				    chatting = false;
-					}
-				}
+			
 			}
 
 		    
@@ -94,6 +122,25 @@ public class DavidCave extends CaveRoom {
 	}
 	public String getActiveDescription() {
 		return activeDescription;
+	}
+    public boolean checkNumber(String response)
+    {
+      
+	  for(int i =0;i<numbers.length;i++) 
+		  {
+			  if(response.contains(numbers[i])) {
+			  return true;
+			  }   
+      
+		  
+		 }
+		  return false;
+    }
+	public void setMin(int min) {
+		this.min = min;
+	}
+	public void setMax(int max) {
+		this.max = max;
 	}
 
 }
