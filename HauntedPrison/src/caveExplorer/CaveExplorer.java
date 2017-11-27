@@ -34,9 +34,7 @@ public class CaveExplorer {
 		if(inventory.getHp()==0) {
 			CaveExplorer.print("GAME OVER");
 		}
-		else {
-			CaveExplorer.print("ESCAPE SUCESSFUL!");
-		}
+
 	}
 	
 	private static void npcActions() {
