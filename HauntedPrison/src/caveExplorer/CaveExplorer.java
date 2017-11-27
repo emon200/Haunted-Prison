@@ -23,13 +23,19 @@ public class CaveExplorer {
 
 
 	private static void startExploring() {
-		while(playing) {
+		while(playing && inventory.getHp() >0) {
 			npcActions();
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());
 			print("What would you like to do?");
 			String input = in.nextLine();
 			currentRoom.interpretInput(input);
+		}
+		if(inventory.getHp()==0) {
+			CaveExplorer.print("GAME OVER");
+		}
+		else {
+			CaveExplorer.print("ESCAPE SUCESSFUL!");
 		}
 	}
 	
