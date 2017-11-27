@@ -17,6 +17,7 @@ public class CaveExplorer {
 		
 		inventory = new Inventory();
 		inventory.setHp(10);
+		inventory.setKeys(0);
 		inventory.updateMap();
 		startExploring();
 	}
@@ -25,7 +26,7 @@ public class CaveExplorer {
 	}
 
 	private static void startExploring() {
-		while(playing) {
+		while(playing & inventory.getHp()>0) {
 			npcActions();
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());
@@ -33,6 +34,13 @@ public class CaveExplorer {
 			String input = in.nextLine();
 			currentRoom.interpretInput(input);
 		}
+		if(inventory.getHp()<=0) {
+			CaveExplorer.print("Game Over");
+		}
+		if(inventory.getKeys()==2) {
+			CaveExplorer.print("You have escaped");
+		}
+		
 	}
 	
 	private static void npcActions() {

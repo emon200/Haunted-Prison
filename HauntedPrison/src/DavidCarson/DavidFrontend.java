@@ -78,7 +78,9 @@ public class DavidFrontend implements CarsonSupport {
       			}
       			else {
       				if(playerWin(plots)) {
-      					System.out.println("You have matched up all the the switches and have done so in within the limited amount of tries you've been given.");
+      					System.out.println("You have matched up all the the switches and have done so in within the limited amount of tries you've been given.\n You escape the room and get a key in the process...");	
+      					int x = CaveExplorer.inventory.getKeys();
+      					CaveExplorer.inventory.setKeys(x+1);
       					hasWon = true;
       					playing = false;
       				}

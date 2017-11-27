@@ -202,6 +202,7 @@ public class CaveRoom {
 				+ "");
 		MiniGameStart customRoom6 = new MiniGameStart("This is where Amanats and Nabeels game is");
 		minigameStart2 customRoom7 = new minigameStart2("Memory Game");
+		CaveRoom customRoom8 = new EscapeRoom("...");
 
 		
 		CaveExplorer.caves[0][1] = customRoom;
@@ -211,6 +212,7 @@ public class CaveRoom {
 		CaveExplorer.caves[1][2] = customRoom2;
 		CaveExplorer.caves[2][2] = customRoom6;
 		CaveExplorer.caves[2][0] = customRoom7;		
+		CaveExplorer.caves[0][3] = customRoom8;
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
@@ -225,6 +227,8 @@ public class CaveRoom {
 		c[1][1].setConnection(SOUTH, c[2][1], new Door());
 		c[2][1].setConnection(EAST, c[2][2], new Door());
 		c[2][1].setConnection(WEST, c[2][0], new Door());
+		c[2][2].setConnection(EAST, c[2][3], new Door());
+		c[0][2].setConnection(EAST, c[0][3],new Door());
 
 		/**
 		 * Special requests:

@@ -5,7 +5,14 @@ public class Inventory {
 	public static boolean hasWeapon;
 	private String map;
 	private int hp;
+	private int keys;
 	
+	public int getKeys() {
+		return keys;
+	}
+	public void setKeys(int keys) {
+		this.keys = keys;
+	}
 	public Inventory() {
 	
 	}
@@ -54,7 +61,7 @@ public class Inventory {
 				map += text +"\n";
 			}
 		}
-	 	map+= "Current HP:" + hp;
+	 	map+= "Current HP:" + hp +"\n Keys:"+ keys;
 		
 	}
 
