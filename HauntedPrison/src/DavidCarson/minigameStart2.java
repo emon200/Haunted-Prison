@@ -5,7 +5,7 @@ import caveExplorer.CaveRoom;
 
 public class minigameStart2 extends CaveRoom {
 
-	private boolean visited;
+	private boolean win = false;
 	private String activeDescription;
 	private String inactiveDescription;
 	
@@ -19,13 +19,14 @@ public class minigameStart2 extends CaveRoom {
 		if(!DavidFrontend.getHasWon()) {
 			DavidFrontend.main(null);
 		}else {
+			
 			CaveExplorer.print(inactiveDescription);
 		}
-		visited = true;
+	
 	}
 	
 	public String getContents() {
-		if(!visited) {
+		if(!DavidFrontend.getHasWon()) {
 			return "K";
 		}else {
 			return super.getContents();
@@ -33,7 +34,7 @@ public class minigameStart2 extends CaveRoom {
 	}
 
 	public String getDescription() {
-		if(visited == false) {
+		if(DavidFrontend.getHasWon() == false) {
 			return super.getDescription() + "\n" + getActiveDescription();
 		}else {
 			String npcDesc = "";
