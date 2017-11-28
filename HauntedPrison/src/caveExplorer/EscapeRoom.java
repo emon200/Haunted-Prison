@@ -41,7 +41,7 @@ public class EscapeRoom extends CaveRoom {
 			chatting = true;
 			while(chatting) {
 				    if(s.equalsIgnoreCase("e")) {
-				    	if(CaveExplorer.inventory.getKeys()>=2) {
+				    	if(Inventory.getKeys()>=2) {
 				    		CaveExplorer.print("You put each key into the sockets and unlock the door...");
 				    		chatting = false;
 				    		CaveExplorer.playing = false;
