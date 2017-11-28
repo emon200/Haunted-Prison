@@ -205,6 +205,7 @@ public class CaveRoom {
 		minigameStart2 customRoom3 = new minigameStart2("Memory Matching Game...");
 		CaveRoom customRoom4 = new EscapeRoom("...");
 		CaveRoom customRoom5 = new GaurdRoom2("Second Gaurd room");
+		CaveRoom customRoom6 = new DavidCave("Med-bay");
 
 		CaveExplorer.caves[0][0] = missionRoom;
 		CaveExplorer.caves[0][1] = customRoom;
@@ -213,6 +214,7 @@ public class CaveRoom {
 		CaveExplorer.caves[2][2] = customRoom3;
 		CaveExplorer.caves[2][3] = customRoom4;
 		CaveExplorer.caves[2][1] = customRoom5; 
+		CaveExplorer.caves[0][2] = customRoom6;
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][0];

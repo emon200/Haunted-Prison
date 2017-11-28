@@ -46,6 +46,7 @@ public class DavidCave extends CaveRoom {
 	}
 	
 	private void interact() {
+			CaveExplorer.print("You walk inside the room and look around... \n You see the empty beds and the doctor's desk vacant... /n Guess nobodies here at the moment.../n Won't hurt to look around...  ");
 			CaveExplorer.print("Inside the room, you notice a spare med-kit locked inside a small safe. The safe is a 3 digit lock. Won't hurt to try and guess the combination ");
 			String s = CaveExplorer.in.nextLine();
 			while(!checkNumber(s)) {
