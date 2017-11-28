@@ -201,8 +201,8 @@ public class CaveRoom {
 		CaveRoom missionRoom = new MissionRoom("Starting off");
 		CaveRoom customRoom = new GaurdRoom("First Gaurd room with one key");
 		CaveRoom customRoom1 = new InventoryRoom("Has gun");
-		MiniGameStart customRoom2 = new MiniGameStart("This is where Amanats and Nabeels game is");
-		minigameStart2 customRoom3 = new minigameStart2("Memory Matching Game...");
+		//MiniGameStart customRoom2 = new MiniGameStart("This is where Amanats and Nabeels game is");
+		//minigameStart2 customRoom3 = new minigameStart2("Memory Matching Game...");
 		CaveRoom customRoom4 = new EscapeRoom("...");
 		CaveRoom customRoom5 = new GaurdRoom2("Second Gaurd room");
 		CaveRoom customRoom6 = new DavidCave("Med-bay");
@@ -210,8 +210,8 @@ public class CaveRoom {
 		CaveExplorer.caves[0][0] = missionRoom;
 		CaveExplorer.caves[0][1] = customRoom;
 		CaveExplorer.caves[1][2] = customRoom1;
-		CaveExplorer.caves[0][2] = customRoom2;
-		CaveExplorer.caves[2][2] = customRoom3;
+		//CaveExplorer.caves[0][2] = customRoom2;
+		//CaveExplorer.caves[2][2] = customRoom3;
 		CaveExplorer.caves[2][3] = customRoom4;
 		CaveExplorer.caves[2][1] = customRoom5; 
 		CaveExplorer.caves[0][2] = customRoom6;

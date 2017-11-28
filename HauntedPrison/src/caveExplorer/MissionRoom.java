@@ -4,7 +4,7 @@ public class MissionRoom extends CaveRoom {
 	private static String input;
 	public MissionRoom(String description) {
 		super(description);
-		/*System.out.println("PRISON ESCAPE");
+		System.out.println("PRISON ESCAPE");
 		System.out.println("Objective: Escape the Prison.");
 		System.out.println("Who: You play as the latest Prisoner");
 		System.out.println("How: You need to beat the two gaurds and get their keys \n then make it the location marked A on the map");
@@ -22,6 +22,5 @@ public class MissionRoom extends CaveRoom {
 	public static String getInput() {
 		return input; 
 	}
-*/
-}
+
 }

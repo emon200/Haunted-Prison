@@ -7,6 +7,12 @@ public class Inventory {
 	private int hp;
 	private static int keys;
 	
+	public static boolean isHasWeapon() {
+		return hasWeapon;
+	}
+	public static void setHasWeapon(boolean hasWeapon) {
+		Inventory.hasWeapon = hasWeapon;
+	}
 	public static int getKeys() {
 		return keys;
 	}
