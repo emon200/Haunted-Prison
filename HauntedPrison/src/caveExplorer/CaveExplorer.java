@@ -35,10 +35,10 @@ public class CaveExplorer {
 			currentRoom.interpretInput(input);
 		}
 		if(inventory.getHp()<=0) {
-			CaveExplorer.print("Game Over");
+			CaveExplorer.print("Game Over...");
 		}else {
-		if(inventory.getKeys()==2) {
-			CaveExplorer.print("You have escaped");
+		if(inventory.getKeys()>=2) {
+			CaveExplorer.print("You have escaped!!!");
 		}
 		}
 		

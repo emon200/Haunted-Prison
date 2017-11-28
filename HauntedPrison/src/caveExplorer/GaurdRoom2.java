@@ -15,20 +15,20 @@ public class GaurdRoom2 extends CaveRoom {
 	}
 	public void enter() {
 		super.enter();
-		System.out.println("Gaurd: YOU!!! HOW DID YOU ESCAPE YOUR CELL??");
-		delay();
-		System.out.println(MissionRoom.getInput()+": Some mysterious voice in my head let me out");
-		delay();
-		System.out.println("Gaurd: No matter, I won't let you escape.");
-		delay();
-		System.out.println("Chill I'm bored of this place already, plus I got a mysterious voice in my head \n Really wanna mess with me?");
-		delay();
-		System.out.println("Gaurd: Fair point. Fine, win the Matching game and you can get past me!");
-		delay();
-		System.out.println("\n Get ready to fight");
-		respondToKey(3); 
-		delay();
 		if(!DavidFrontend.getHasWon()) {
+			System.out.println("Gaurd: YOU!!! HOW DID YOU ESCAPE YOUR CELL??");
+			delay();
+			System.out.println(MissionRoom.getInput()+": Some mysterious voice in my head let me out");
+			delay();
+			System.out.println("Gaurd: No matter, I won't let you escape.");
+			delay();
+			System.out.println("Chill I'm bored of this place already, plus I got a mysterious voice in my head \n Really wanna mess with me?");
+			delay();
+			System.out.println("Gaurd: Fair point. Fine, win the Matching game and you can get past me!");
+			delay();
+			System.out.println("\n Get ready to fight");
+			respondToKey(3); 
+			delay();
 			DavidFrontend.main(null);
 		}else {
 			
