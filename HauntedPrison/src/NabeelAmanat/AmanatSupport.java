@@ -10,4 +10,8 @@ public interface AmanatSupport {
 
 	void gameStart();
 
+	boolean isThereShip(int row, int col);
+
+	boolean isThereAIShip(int row, int col);
+
 }

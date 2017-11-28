@@ -9,8 +9,8 @@ public class FrontEndAmanat implements NabeelSupport{
 	private String cheatcode = "Titanic";
 	private long counter;
 	private boolean playing;
-	private boolean isHit;
-	private boolean isCHit;
+	private boolean isHit=false;;
+	private boolean isCHit=false;
 	private int playerScore;
 	private int computerScore;
 	
@@ -24,19 +24,13 @@ public class FrontEndAmanat implements NabeelSupport{
 	
 	public void startGame() {
 		promptUser("Welcome to Battleship!" + "\n");
-		displayAIBoard(backend.getAIPlots());
-		displayBoard(backend.getPlots());
+		//add in some text with instructions or stuff
 		((BackEndNabeel)backend).gameStart();
 		
 	}
 	
-	private void updateScore() {
-		if(isHit == true) {
-			playerScore++;
-		}
-		if(isCHit == true) {
-			computerScore++;
-		}
+	public void updateHumanScore() {
+		playerScore++;
 	}
 	public void displayBoard(AmanatNabeelPlot[][] plots) {
 		String rows = "0123456789";
@@ -44,38 +38,38 @@ public class FrontEndAmanat implements NabeelSupport{
 		for(int row = 0; row < plots.length; row++){
 			System.out.print(rows.substring(row, row+1)+" ");
 			for(int col = 0; col < plots[row].length; col++){
-				if(plots[row][col].isRevealed()){
-					if(plots[row][col].isShip()){
-						System.out.print("☠");
-						isHit = true;
-						updateScore();
-						isHit=false;
+				if(AmanatNabeelPlot.isAiRevealed(row, col)){
+					if(backend.isThereShip(row, col)){
+						System.out.print("☠");						
 					}else{
 						System.out.print(" ");	
 					}
-
-				}else{
-					System.out.print(".");
+				}
+				else if(backend.isThereShip(row, col)) {
+					System.out.print("⛵");
+				
+			}
+				else {
+					System.out.print(" ");
 				}
 			}
-			System.out.println(" " + rows.substring(row, row+1));
+			System.out.println(" ");
 		}
 		System.out.println(columns.substring(0, plots[0].length+2));
 	
 	}
 	
-		public void displayAIBoard(AmanatNabeelPlot[][] plots) {
+	
+	public void displayAIBoard(AmanatNabeelPlot[][] plots) {
 		String rows = "0123456789";
 		String columns = "  0123456789";
+		promptUser("~Battleship~");
 		for(int row = 0; row < plots.length; row++){
 			System.out.print(rows.substring(row, row+1)+" ");
 			for(int col = 0; col < plots[row].length; col++){
-				if(plots[row][col].isAIRevealed()){
-					if(plots[row][col].isAIShip()){
+				if(AmanatNabeelPlot.isRevealed(row, col)){
+					if(backend.isThereAIShip(row, col)){
 						System.out.print("☠");
-						isCHit = true;
-						updateScore();
-						isCHit=false;
 					}else{
 						System.out.print(" ");	
 					}
@@ -84,7 +78,7 @@ public class FrontEndAmanat implements NabeelSupport{
 					System.out.print(".");
 				}
 			}
-			System.out.println(" " + rows.substring(row, row+1));
+			System.out.println(" ");
 		}
 		System.out.println(columns.substring(0, plots[0].length+2));
 	
@@ -110,5 +104,11 @@ public class FrontEndAmanat implements NabeelSupport{
 	@Override
 	public void promptUser(String question) {
 		System.out.println(question);
+	}
+
+
+	public void updateAIScore() {
+		computerScore++;
+		
 	}
 }
