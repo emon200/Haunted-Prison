@@ -13,7 +13,7 @@ public class Inventory {
 	public static void setHasWeapon(boolean hasWeapon) {
 		Inventory.hasWeapon = hasWeapon;
 	}
-	public static int getKeys() {
+	public int getKeys() {
 		return keys;
 	}
 	public void setKeys(int keys) {
