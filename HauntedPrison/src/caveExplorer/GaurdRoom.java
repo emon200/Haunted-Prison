@@ -25,7 +25,7 @@ public class GaurdRoom extends CaveRoom {
 		delay();
 		System.out.println("Chill I'm bored of this place already, plus I got a mysterious voice in my head \n Really wanna mess with me?");
 		delay();
-		System.out.println("Gaurd: Fair point. Fine, win the Matching game and you can get past me!");
+		System.out.println("Gaurd: Fair point. Fine, win the Battleship and you can get past me!");
 		delay();
 		System.out.println("\n Get ready to fight");
 		respondToKey(3); 
