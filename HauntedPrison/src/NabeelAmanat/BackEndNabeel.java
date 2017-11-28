@@ -272,6 +272,8 @@ public class BackEndNabeel implements AmanatSupport{
 			inPlay = false;
 		}
 		if(AiShips == 0) {
+			int x = CaveExplorer.inventory.getKeys();
+				CaveExplorer.inventory.setKeys(x+1);
 			gameStatus = true;
 			inPlay= false;
 		}

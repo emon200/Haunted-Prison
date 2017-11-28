@@ -6,7 +6,6 @@ public class FrontEndAmanat implements NabeelSupport{
 	private AmanatSupport backend;
 	private String newHint;
 	private int turn;
-	private String cheatcode = "Titanic";
 	private long counter;
 	private boolean playing;
 	private boolean isHit=false;;
@@ -87,14 +86,6 @@ public class FrontEndAmanat implements NabeelSupport{
 	public void displayScore() {
 		System.out.println("Player Score:" + playerScore);
 		System.out.println("Computer Score:" + computerScore);
-	}
-	
-	public void cheatCode() {
-		String s = CaveExplorer.in.nextLine();
-		if(s.equalsIgnoreCase(cheatcode)) {
-			System.out.println("Suddenly all the ships crash into giant icebergs! \n'I'll never let go Jack'~");
-			playing = false;
-		}
 	}
 	public FrontEndAmanat() {
 		backend = new BackEndNabeel(this);
