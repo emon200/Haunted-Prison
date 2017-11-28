@@ -6,6 +6,8 @@ public class GaurdRoom extends CaveRoom {
 	private String activeDescription;
 	private String inactiveDescription;
 	public static final int wait= 1000;
+	
+	//MINI GAME START FOR BATTLESHIP
 
 	public GaurdRoom(String description) {
 		super(description);

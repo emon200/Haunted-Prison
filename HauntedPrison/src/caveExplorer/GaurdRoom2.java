@@ -4,6 +4,7 @@ import DavidCarson.DavidFrontend;
 
 public class GaurdRoom2 extends CaveRoom {
 
+	//MINI GAME START FOR MATCHING GAME
 	private String activeDescription;
 	private String inactiveDescription;
 	public static final int wait= 1000;
