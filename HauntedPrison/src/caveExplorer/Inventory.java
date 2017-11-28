@@ -5,16 +5,19 @@ public class Inventory {
 	public static boolean hasWeapon;
 	private String map;
 	private int hp;
-	private int keys;
+	private static int keys;
 	
-	public int getKeys() {
+	public static int getKeys() {
 		return keys;
 	}
 	public void setKeys(int keys) {
 		this.keys = keys;
 	}
 	public Inventory() {
-	
+		
+	}
+	public static void keysWon() {
+		keys++;
 	}
 	public int getHp() {
 		return hp;

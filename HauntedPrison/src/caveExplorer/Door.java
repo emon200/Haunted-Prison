@@ -15,6 +15,21 @@ public class Door {
 		
 	}
 
+	public Door(String string) {
+		if(Inventory.getKeys() ==2) {
+			locked =false;
+			open =true;
+			description ="This is the exit. YOU MADE IT. YAY!!!";
+			details = "";
+		}
+		else {
+			locked =true;
+			open =false;
+			description = "You don't have the two keys needed to exit. Go back and get them by defeating the Gaurds!";
+			details = "";
+		}
+	}
+
 	public boolean isLocked() {
 		return locked;
 	}

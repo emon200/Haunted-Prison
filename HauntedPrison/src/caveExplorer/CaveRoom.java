@@ -1,6 +1,5 @@
 package caveExplorer;
 
-import NabeelAmanat.GaurdRoom;
 import NabeelAmanat.MiniGameStart;
 import NabeelAmanat.gambleAmanat;
 import DavidCarson.CarsonCave;
@@ -9,6 +8,7 @@ import DavidCarson.minigameStart2;
 
 public class CaveRoom {
 
+	private static boolean firstTime =false;
 	private String description;//tells what the room looks like
 	private String directions;//tells what you can do
 	private String contents;//a symbol representing what's in the room
@@ -19,12 +19,16 @@ public class CaveRoom {
 	public String gaurdNum;
 	public String bulletCount;
 
-	//constantss
+	//constants
 	public static final int NORTH = 0;
 	public static final int EAST = 1;
 	public static final int SOUTH =2;
 	public static final int WEST = 3;
 
+	public static boolean firstTime() {
+		return firstTime; 
+	}
+	
 
 	public CaveRoom(String description) {
 		this.description = description;
@@ -178,7 +182,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new CaveRoom[5][5];
+		CaveExplorer.caves = new CaveRoom[3][4];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
@@ -194,45 +198,40 @@ public class CaveRoom {
 		CaveExplorer.npcs[0] = new NPC();
 		CaveExplorer.npcs[0].setposition(1, 1);
 		//ADD EACH PERSON's ROOM LIKE THIS:
-		CaveRoom customRoom = new NPCRoom("Room 0,1");
-		CaveRoom customRoom2 = new CarsonCave("Room 1,2");
-		CaveRoom customRoom3 = new DavidCave("Quiet Room");
-		CaveRoom customRoom4 = new gambleAmanat("Room 0,2");
-		CaveRoom customRoom5 = new GaurdRoom("Room 2,1s"
-				+ "");
-		MiniGameStart customRoom6 = new MiniGameStart("This is where Amanats and Nabeels game is");
-		minigameStart2 customRoom7 = new minigameStart2("Memory Matching Game...");
-		CaveRoom customRoom8 = new EscapeRoom("...");
+		CaveRoom missionRoom = new MissionRoom("Starting off");
+		CaveRoom customRoom = new GaurdRoom("First Gaurd room with one key");
+		CaveRoom customRoom1 = new InventoryRoom("Has gun");
+		MiniGameStart customRoom2 = new MiniGameStart("This is where Amanats and Nabeels game is");
+		minigameStart2 customRoom3 = new minigameStart2("Memory Matching Game...");
+		CaveRoom customRoom4 = new EscapeRoom("...");
+		CaveRoom customRoom5 = new GaurdRoom2("Second Gaurd room");
 
-		
+		CaveExplorer.caves[0][0] = missionRoom;
 		CaveExplorer.caves[0][1] = customRoom;
-		CaveExplorer.caves[0][0] = customRoom3;
-		CaveExplorer.caves[0][4] = customRoom4;
-		CaveExplorer.caves[2][1] = customRoom5;
-		CaveExplorer.caves[1][2] = customRoom2;
-		CaveExplorer.caves[2][2] = customRoom6;
-		CaveExplorer.caves[2][0] = customRoom7;		
-		CaveExplorer.caves[4][4] = customRoom8;
+		CaveExplorer.caves[1][2] = customRoom1;
+		CaveExplorer.caves[0][2] = customRoom2;
+		CaveExplorer.caves[2][2] = customRoom3;
+		CaveExplorer.caves[2][3] = customRoom4;
+		CaveExplorer.caves[2][1] = customRoom5; 
+		
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
+		CaveExplorer.currentRoom = CaveExplorer.caves[0][0];
 		CaveExplorer.currentRoom.enter();
-		//5. Set up dooors
+		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
-		c[0][1].setConnection(SOUTH, c[1][1], new Door());
-		c[0][1].setConnection(WEST, c[0][0], new Door());
-		c[1][1].setConnection(EAST, c[1][2], new Door());
-		c[1][1].setConnection(EAST, c[1][2], new Door());
-		c[0][1].setConnection(WEST, c[0][0], new Door());
-		c[0][1].setConnection(EAST, c[0][2], new Door());
-		c[1][1].setConnection(SOUTH, c[2][1], new Door());
+		c[0][0].setConnection(SOUTH, c[1][0], new Door());
+		c[0][0].setConnection(EAST, c[0][1], new Door());
+		c[1][0].setConnection(SOUTH, c[2][0], new Door());
+		c[1][0].setConnection(EAST, c[1][1], new Door());
+		c[2][0].setConnection(EAST, c[2][1], new Door());
 		c[2][1].setConnection(EAST, c[2][2], new Door());
-		c[2][1].setConnection(WEST, c[2][0], new Door());
 		c[2][2].setConnection(EAST, c[2][3], new Door());
-		c[0][2].setConnection(EAST, c[0][3],new Door());
-		c[2][3].setConnection(SOUTH, c[3][3],new Door());
-		c[3][3].setConnection(SOUTH, c[4][3],new Door());
-		c[4][3].setConnection(EAST, c[4][4],new Door());
-		c[0][3].setConnection(EAST, c[0][4], new Door());
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		c[0][2].setConnection(SOUTH, c[1][2], new Door());
+		c[1][2].setConnection(SOUTH, c[2][2], new Door());
+		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[1][1].setConnection(SOUTH, c[2][1], new Door());
+		c[1][1].setConnection(EAST, c[1][2],new Door());
 		/**
 		 * Special requests:
 		 * moving objects in caves

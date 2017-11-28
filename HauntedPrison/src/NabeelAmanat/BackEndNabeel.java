@@ -3,6 +3,7 @@ package NabeelAmanat;
 import java.util.Scanner;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
 
 public class BackEndNabeel implements AmanatSupport{
 	private FrontEndAmanat frontend;
@@ -20,7 +21,9 @@ public class BackEndNabeel implements AmanatSupport{
 	private boolean gameStatus= false;
 	private boolean firstStep= false;
 	Scanner in = new Scanner(System.in);
-	private String answer; 
+	private String answer;
+	private boolean finishGame =false;
+	private int[] breakpoint = new int[10]; 
 	
 	public BackEndNabeel(FrontEndAmanat frontend) {
 		this.frontend = frontend;
@@ -47,35 +50,63 @@ public class BackEndNabeel implements AmanatSupport{
 			nShips = 5-ships;
 			frontend.promptUser("Where would you like to place your ship?\n" +"You have "+ nShips+" left to pick"+". Put it in this format: x-coordinate, y-coordinate.");
 			String input = CaveExplorer.in.nextLine();
+			if(input.toLowerCase().equals("quit")) {
+				finishGame = true;
+				gameStatus =true;
+				break;
+			}
 			first = getInput(input);
 			coordinates[i][0] = first[0];
 			coordinates[i][1] = first[1];
 			ships++;
 		}
+		if(finishGame == true){
+			if(gameStatus==false) {
+				frontend.promptUser("Looks like you lost.\nBetter luck next time");
+			}
+			else {
+				frontend.promptUser("Looks like you won, good job.\nGaurd:'I'll get you next time.");
+				frontend.promptUser("You get a key, you can use this to escape.");
+				Inventory.keysWon();
+				Inventory.keysWon();
+			}
+		}
+		else {
 		ships =5;
 		AiShips = 5;
 		inPlay= true;
 		AiActions();
+		frontend.promptUser("You can exit with the super secret cheat code or press 'enter' to keep playing");
 		while(inPlay == true) {
-		//setFirstLocations();
-		System.out.println(coordinates[0][0] +","+coordinates[0][1]);
-		System.out.println(coordinates[1][0] +","+coordinates[1][1]);
-		System.out.println(coordinates[2][0] +","+coordinates[2][1]);
-		System.out.println(coordinates[3][0] +","+coordinates[3][1]);
-		System.out.println(coordinates[4][0] +","+coordinates[4][1]);
+		String input = CaveExplorer.in.nextLine();
+		if(input.toLowerCase().equals("quit")) {
+			//frontend.promptUser("WHatthe ");
+			finishGame =true;
+			AiShips =0;
+			gameStatus =true; 
+			break;
+		}
 		frontend.displayAIBoard(plots);
 		frontend.displayBoard(plots);
 		frontend.displayScore();
 		doHumanAction();
+		if(breakpoint[0] ==10) {
+			gameStatus =true;
+			break;
+		}
 		doAiAction();
 		isGameFinished();
+		
 		}	
 		if(gameStatus==false) {
 			frontend.promptUser("Looks like you lost.\nBetter luck next time");
 		}
 		else {
-			frontend.promptUser("Looks like you won, good job.\nComputer:'I'll get you next time.");
+			frontend.promptUser("Looks like you won, good job.\nGaurd:'I'll get you next time.");
+			frontend.promptUser("You get a key, you can use this to escape.");
+			Inventory.keysWon();
 		}
+	}
 	}
 
 	public int[] AiActions() {
@@ -96,6 +127,9 @@ public class BackEndNabeel implements AmanatSupport{
 		frontend.promptUser("Where would you like to hit next? Format: x,y");
 		String input = CaveExplorer.in.nextLine();
 		marks = getInput(input);
+		if(marks[0] ==10) {
+			return;
+		}
 		if(isHitHuman(marks, AiChoice)) {
 			frontend.promptUser("Good job you got a ship. \nIt's the Ai's turn.");
 			AiShips--;
@@ -108,6 +142,11 @@ public class BackEndNabeel implements AmanatSupport{
 	}
 	
 	public int[] getInput(String uinput) {
+		if(uinput.toLowerCase().equals("quit")) {
+			//frontend.promptUser("WHatthe ");
+			breakpoint[0] = 10;
+			return breakpoint;
+		}
 		int loop =0;
 		int loop2 =0;
 		int loop3 =0;
@@ -177,13 +216,6 @@ public class BackEndNabeel implements AmanatSupport{
 		
 	}
 
-	public boolean isComma(String res) {
-		if(res.substring(1,2).equals(",")) {
-			return false;
-		}
-		return true;
-	}
-
 	public void inputTime() {
 		answer = CaveExplorer.in.nextLine();
 		
@@ -215,13 +247,13 @@ public class BackEndNabeel implements AmanatSupport{
 			target[i] = (int)(Math.random()*AiPlots.length);
 		}
 		if(isHitAi(target, coordinates)) {
-			String result ="Looks like the computer took out one of your ships at location: " +target[0]+", "+target[1]+".";
+			String result ="Looks like the Gaurd took out one of your ships at location: " +target[0]+", "+target[1]+".";
 			frontend.promptUser(result);
 			ships--;
 			frontend.updateAIScore();
 		}
 		else
-			frontend.promptUser("Computer: "+"Damn you human, I'll get you next time");
+			frontend.promptUser("Gaurd: "+"Damn you human, I'll get you next time");
 		AmanatNabeelPlot.Aireveal(target[0], target[1]);
 	}
 		
