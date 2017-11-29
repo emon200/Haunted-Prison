@@ -166,9 +166,4 @@ public class CarsonBackend implements DavidSupport {
 		frontend.removeTries();
 		return false;
 	}
-
-
-
-
-
 }
