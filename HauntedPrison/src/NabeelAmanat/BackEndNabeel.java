@@ -9,21 +9,19 @@ public class BackEndNabeel implements AmanatSupport{
 	private FrontEndAmanat frontend;
 	private AmanatNabeelPlot[][] plots;
 	private AmanatNabeelPlot[][] AiPlots;
-	private int health;
 	private int[][] coordinates =new int[5][2];
 	private int ships = 0;
 	private int AiShips = 0; 
 	private int[] AiChoice = new int[10];
 	int[] info = new int[2];
-	private boolean first = false;
 	private int nShips = 5;
 	private boolean inPlay = false;
 	private boolean gameStatus= false;
-	private boolean firstStep= false;
 	Scanner in = new Scanner(System.in);
 	private String answer;
 	private boolean finishGame =false;
-	private int[] breakpoint = new int[10]; 
+	private int[] breakpoint = new int[10];
+	
 	
 	public BackEndNabeel(FrontEndAmanat frontend) {
 		this.frontend = frontend;
@@ -68,7 +66,7 @@ public class BackEndNabeel implements AmanatSupport{
 				frontend.promptUser("Looks like you won, good job.\nGaurd:'I'll get you next time.");
 				frontend.promptUser("You get a key, you can use this to escape.");
 				Inventory.keysWon();
-				Inventory.keysWon();
+				
 			}
 		}
 		else {
@@ -108,7 +106,6 @@ public class BackEndNabeel implements AmanatSupport{
 		}
 	}
 	}
-
 	public int[] AiActions() {
 		for(int i =0;i<9;i=i+2) {
 			int xLocation = 0;

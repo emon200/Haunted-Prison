@@ -13,6 +13,7 @@ public class FrontEndAmanat implements NabeelSupport{
 	private int playerScore;
 	private int computerScore;
 	
+	
 	public static final void main(String[] args) {
 		
 		FrontEndAmanat demo = new FrontEndAmanat();
@@ -23,7 +24,8 @@ public class FrontEndAmanat implements NabeelSupport{
 	
 	public void startGame() {
 		promptUser("Welcome to Battleship!" + "\n");
-		//add in some text with instructions or stuff
+		promptUser("In this spooky version, the ships will be pirate ships. Your crew is comprised of skeleton soldiers, so they may be slow \nand unable to do certain things if you don't tell them in a format that they understand!");
+		
 		((BackEndNabeel)backend).gameStart();
 		
 	}
